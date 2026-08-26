@@ -28,10 +28,16 @@ export function CalorieCalculator() {
     setBannerError(null)
     setFieldError(null)
 
-    // Simulate an async calculation with a loading state.
+    const trimmed = input.trim()
+    if (!trimmed) {
+      setFieldError('오늘 섭취한 음식을 입력해주세요')
+      return
+    }
+
+    // Simulate an async calculation with a loading state (well under 3s PRD limit).
     setLoading(true)
     window.setTimeout(() => {
-      const res = calculate(input)
+      const res = calculate(trimmed)
       if (res.ok) {
         setResult(res)
       } else if (res.code === 'server' || res.code === 'unrecognized') {
@@ -42,14 +48,14 @@ export function CalorieCalculator() {
         setFieldError(res.message)
       }
       setLoading(false)
-    }, 1500)
+    }, 600)
   }
 
   function handleKeyDown(e: React.KeyboardEvent<HTMLTextAreaElement>) {
     if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) {
       if (e.nativeEvent.isComposing || e.keyCode === 229) return
       e.preventDefault()
-      if (!loading && input.trim()) runCalculation()
+      if (!loading) runCalculation()
     }
   }
 
@@ -120,8 +126,8 @@ export function CalorieCalculator() {
         <Button
           size="lg"
           onClick={runCalculation}
-          disabled={loading || input.trim().length === 0}
-          className="mt-4 h-11 w-full rounded-2xl text-sm font-semibold"
+          disabled={loading}
+          className="mt-4 h-11 w-full rounded-2xl text-sm font-semibold shadow-md shadow-primary/10 transition-all hover:shadow-lg active:scale-[0.99]"
         >
           {loading ? (
             <>
@@ -142,7 +148,7 @@ export function CalorieCalculator() {
       </div>
 
       {/* Results area */}
-      <div className="mt-5">
+      <div className="mt-5" aria-live="polite" aria-atomic="true">
         {bannerError ? (
           <div
             role="alert"
