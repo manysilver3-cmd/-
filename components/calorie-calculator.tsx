@@ -1,10 +1,19 @@
 'use client'
 
-import { useState } from 'react'
-import { AlertCircle, Flame, Loader2, RotateCcw, Sparkles, X } from 'lucide-react'
+import { useEffect, useState } from 'react'
+import { AlertCircle, Clock, Flame, History, Loader2, RotateCcw, Sparkles, Trash2, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { calculate, MAX_LENGTH, type CalcSuccess } from '@/lib/calorie'
+import { clearHistory, getHistory, saveHistoryItem, type CalculationHistoryItem } from '@/lib/storage'
 import { ResultSection } from '@/components/result-section'
+
+const QUICK_EXAMPLES = [
+  '햄버거 1개, 콜라 1캔, 감자튀김',
+  '삼겹살 1인분, 소주 1병, 공기밥 1개',
+  '치킨 3조각, 생맥주 500cc',
+  '마라탕, 꿔바로우',
+  '샐러드 1개, 닭가슴살, 아메리카노',
+]
 
 export function CalorieCalculator() {
   const [input, setInput] = useState('')
@@ -12,6 +21,11 @@ export function CalorieCalculator() {
   const [bannerError, setBannerError] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
   const [result, setResult] = useState<CalcSuccess | null>(null)
+  const [history, setHistory] = useState<CalculationHistoryItem[]>([])
+
+  useEffect(() => {
+    setHistory(getHistory())
+  }, [])
 
   function handleChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
     const value = e.target.value
@@ -24,22 +38,29 @@ export function CalorieCalculator() {
     if (fieldError) setFieldError(null)
   }
 
-  function runCalculation() {
+  function handleSelectExample(text: string) {
+    setInput(text)
+    if (fieldError) setFieldError(null)
+    triggerCalculation(text)
+  }
+
+  function triggerCalculation(targetText?: string) {
     setBannerError(null)
     setFieldError(null)
 
-    const trimmed = input.trim()
-    if (!trimmed) {
+    const textToCalc = (targetText ?? input).trim()
+    if (!textToCalc) {
       setFieldError('오늘 섭취한 음식을 입력해주세요')
       return
     }
 
-    // Simulate an async calculation with a loading state (well under 3s PRD limit).
     setLoading(true)
     window.setTimeout(() => {
-      const res = calculate(trimmed)
+      const res = calculate(textToCalc)
       if (res.ok) {
         setResult(res)
+        const updated = saveHistoryItem(textToCalc, res.totalCalories, res.items.length)
+        setHistory(updated)
       } else if (res.code === 'server' || res.code === 'unrecognized') {
         setResult(null)
         setBannerError(res.message)
@@ -48,7 +69,11 @@ export function CalorieCalculator() {
         setFieldError(res.message)
       }
       setLoading(false)
-    }, 600)
+    }, 500)
+  }
+
+  function runCalculation() {
+    triggerCalculation()
   }
 
   function handleKeyDown(e: React.KeyboardEvent<HTMLTextAreaElement>) {
@@ -104,6 +129,22 @@ export function CalorieCalculator() {
           </span>
         </div>
 
+        {/* Quick Examples */}
+        <div className="mt-3 flex flex-wrap items-center gap-1.5">
+          <span className="text-xs font-medium text-muted-foreground">추천 식단:</span>
+          {QUICK_EXAMPLES.slice(0, 3).map((ex) => (
+            <button
+              key={ex}
+              type="button"
+              onClick={() => handleSelectExample(ex)}
+              disabled={loading}
+              className="rounded-lg border border-border/60 bg-muted/40 px-2 py-1 text-xs text-foreground/80 transition-colors hover:bg-muted hover:text-foreground disabled:opacity-50"
+            >
+              {ex}
+            </button>
+          ))}
+        </div>
+
         {/* Field error */}
         <div
           className={`grid transition-all duration-300 ${
@@ -141,7 +182,49 @@ export function CalorieCalculator() {
             </>
           )}
         </Button>
-        <p className="mt-2 text-center text-xs text-muted-foreground">
+
+        {/* Recent History */}
+        {history.length > 0 && (
+          <div className="mt-4 border-t border-border/60 pt-3">
+            <div className="flex items-center justify-between text-xs text-muted-foreground">
+              <span className="flex items-center gap-1 font-semibold text-foreground/80">
+                <History className="size-3.5" aria-hidden="true" />
+                최근 계산 기록
+              </span>
+              <button
+                type="button"
+                onClick={() => {
+                  clearHistory()
+                  setHistory([])
+                }}
+                className="flex items-center gap-1 hover:text-destructive transition-colors"
+                title="기록 지우기"
+              >
+                <Trash2 className="size-3" aria-hidden="true" />
+                기록 삭제
+              </button>
+            </div>
+            <div className="mt-2 flex flex-wrap gap-1.5">
+              {history.map((h) => (
+                <button
+                  key={h.id}
+                  type="button"
+                  onClick={() => handleSelectExample(h.input)}
+                  disabled={loading}
+                  className="group inline-flex items-center gap-1.5 rounded-full border border-border bg-background px-2.5 py-1 text-xs transition-colors hover:border-primary/50 hover:bg-primary/5"
+                >
+                  <Clock className="size-3 text-muted-foreground group-hover:text-primary" />
+                  <span className="truncate max-w-[150px] font-medium text-foreground">{h.input}</span>
+                  <span className="rounded bg-muted px-1 py-0.2 text-[10px] font-semibold text-flame">
+                    {h.totalCalories} kcal
+                  </span>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <p className="mt-3 text-center text-xs text-muted-foreground">
           팁: 결과를 불러오지 못하는 상황을 보려면 <span className="font-mono">error</span>를
           입력해보세요.
         </p>

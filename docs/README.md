@@ -13,5 +13,5 @@
    - 스프린트별 태스크 목록 및 진행 상태 트래킹 (TODO, IN PROGRESS, DONE)
    - 각 작업 항목별 세부 인수 조건 (Acceptance Criteria)
 
-3. **[제품 요구사항 정의서 (PRDMD)](../PRDMD)**
+3. **[제품 요구사항 정의서 (PRD.md)](../PRD.md)**
    - 목표, 성공 조건, 사용자 스토리 및 화면/기능 명세

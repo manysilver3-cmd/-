@@ -1,7 +1,7 @@
 # 📋 칼로리 & 운동 시간 계산기 개발 계획서 (Development Plan)
 
-> **문서 버전**: v1.0.0  
-> **기준 문서**: `PRDMD` (칼로리 & 운동 시간 계산기 PRD)  
+> **문서 버전**: v1.1.0  
+> **기준 문서**: `PRD.md` (칼로리 & 운동 시간 계산기 PRD)  
 > **프로젝트 성격**: Single Page Application (Next.js / TypeScript / Tailwind CSS)
 
 ---
