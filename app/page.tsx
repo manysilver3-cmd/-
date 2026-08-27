@@ -84,7 +84,7 @@ export default function Page() {
       {/* High Tech Cyber Footer */}
       <footer className="w-full py-6 bg-[#0a0a0c] border-t border-[#39393b]/60 flex flex-col sm:flex-row justify-between items-center px-6 md:px-12 max-w-6xl mx-auto text-[11px] font-mono text-[#cac4cf]/60 relative z-20 gap-2">
         <div className="text-[#39ff14] font-bold">
-          © 2024 DAEUN VITALITY // NEURAL CORE v4.2
+          © 2026 DAEUN VITALITY // NEURAL CORE v4.2
         </div>
         <div className="flex gap-6">
           <button type="button" onClick={() => setCurrentView('landing')} className="hover:text-[#00f3ff]">PROTOCOL</button>
