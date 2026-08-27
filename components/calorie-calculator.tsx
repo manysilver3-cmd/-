@@ -4,9 +4,11 @@ import { useEffect, useState } from 'react'
 import { AlertCircle, Bot, Clock, Flame, History, Loader2, RotateCcw, Sparkles, Trash2, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { MAX_LENGTH } from '@/lib/calorie'
+import type { UserProfile } from '@/lib/calorie'
 import { calculateWithAI, type ExtendedCalcSuccess } from '@/lib/ai-calorie'
-import { clearHistory, getHistory, saveHistoryItem, type CalculationHistoryItem } from '@/lib/storage'
+import { clearHistory, getHistory, saveHistoryItem, getProfile, type CalculationHistoryItem } from '@/lib/storage'
 import { ResultSection } from '@/components/result-section'
+import { ProfilePanel } from '@/components/profile-panel'
 
 const QUICK_EXAMPLES = [
   '햄버거 1개, 콜라 1캔, 감자튀김',
@@ -23,9 +25,12 @@ export function CalorieCalculator() {
   const [loading, setLoading] = useState(false)
   const [result, setResult] = useState<ExtendedCalcSuccess | null>(null)
   const [history, setHistory] = useState<CalculationHistoryItem[]>([])
+  const [userProfile, setUserProfile] = useState<UserProfile | null>(null)
 
   useEffect(() => {
     setHistory(getHistory())
+    const p = getProfile()
+    if (p) setUserProfile(p)
   }, [])
 
   function handleChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
@@ -93,6 +98,7 @@ export function CalorieCalculator() {
 
   return (
     <div className="w-full max-w-2xl">
+      <ProfilePanel onProfileChange={setUserProfile} />
       {/* Header */}
       <header className="mb-6 text-center">
         <div className="mb-3 inline-flex size-14 items-center justify-center rounded-2xl bg-flame/10 ring-1 ring-flame/20">
@@ -268,7 +274,7 @@ export function CalorieCalculator() {
         ) : loading ? (
           <ResultSkeleton />
         ) : result ? (
-          <ResultSection result={result} />
+          <ResultSection result={result} userProfile={userProfile} />
         ) : (
           <EmptyState />
         )}

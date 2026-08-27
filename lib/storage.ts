@@ -1,3 +1,38 @@
+// User profile storage
+import type { UserProfile } from '@/lib/calorie'
+
+const PROFILE_KEY = 'calorie_calculator_profile_v1'
+
+export function getProfile(): UserProfile | null {
+  if (typeof window === 'undefined') return null
+  try {
+    const raw = localStorage.getItem(PROFILE_KEY)
+    if (!raw) return null
+    return JSON.parse(raw) as UserProfile
+  } catch {
+    return null
+  }
+}
+
+export function saveProfile(profile: UserProfile): void {
+  if (typeof window === 'undefined') return
+  try {
+    localStorage.setItem(PROFILE_KEY, JSON.stringify(profile))
+  } catch {
+    // ignore
+  }
+}
+
+export function clearProfile(): void {
+  if (typeof window === 'undefined') return
+  try {
+    localStorage.removeItem(PROFILE_KEY)
+  } catch {
+    // ignore
+  }
+}
+
+// Calculation history
 export type CalculationHistoryItem = {
   id: string
   timestamp: number
@@ -31,7 +66,6 @@ export function saveHistoryItem(input: string, totalCalories: number, itemCount:
       totalCalories,
       itemCount,
     }
-    // Filter out identical recent input
     const filtered = current.filter((item) => item.input.trim() !== input.trim())
     const updated = [newItem, ...filtered].slice(0, MAX_HISTORY_ITEMS)
     localStorage.setItem(STORAGE_KEY, JSON.stringify(updated))

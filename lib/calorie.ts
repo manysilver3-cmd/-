@@ -230,14 +230,69 @@ export type WorkoutPlan = {
   minutes: number
   intensity: string
   kcalPerHour: number
+  category: 'outdoor' | 'indoor' | 'intense'
 }
 
 // Exercise kcal burned per minute (~65kg adult standard)
-export const WORKOUTS = [
-  { key: 'walk', label: '걷기', perMin: 4, kcalPerHour: 240, intensity: '보통 걸음 (4.5 km/h)' },
-  { key: 'run', label: '러닝', perMin: 10, kcalPerHour: 600, intensity: '조깅 페이스 (8 km/h)' },
-  { key: 'bike', label: '자전거', perMin: 7, kcalPerHour: 420, intensity: '일반 주행 (15 km/h)' },
-] as const
+export const WORKOUTS: Array<{
+  key: string
+  label: string
+  perMin: number
+  kcalPerHour: number
+  intensity: string
+  category: 'outdoor' | 'indoor' | 'intense'
+}> = [
+  { key: 'walk', label: '걷기', perMin: 4, kcalPerHour: 240, intensity: '보통 걸음 (4.5 km/h)', category: 'outdoor' },
+  { key: 'run', label: '러닝', perMin: 10, kcalPerHour: 600, intensity: '조깅 페이스 (8 km/h)', category: 'outdoor' },
+  { key: 'bike', label: '자전거', perMin: 7, kcalPerHour: 420, intensity: '일반 주행 (15 km/h)', category: 'outdoor' },
+  { key: 'stair', label: '계단오르기', perMin: 8, kcalPerHour: 480, intensity: '1초 2계단 페이스', category: 'indoor' },
+  { key: 'rope', label: '줄넘기', perMin: 11, kcalPerHour: 660, intensity: '분당 120회', category: 'intense' },
+  { key: 'swim', label: '수영 (자유형)', perMin: 9, kcalPerHour: 540, intensity: '중간 속도', category: 'outdoor' },
+  { key: 'homet', label: '타바타 / 홈트', perMin: 8.5, kcalPerHour: 510, intensity: '전신 인터벌', category: 'indoor' },
+]
+
+export type UserProfile = {
+  gender: 'male' | 'female'
+  age: number
+  weight: number // kg
+  height: number // cm
+  activityLevel: 'sedentary' | 'light' | 'moderate' | 'active'
+  goal: 'lose' | 'maintain' | 'gain'
+}
+
+export function calculateDailyTargetCalories(profile: UserProfile): {
+  bmr: number
+  tdee: number
+  targetCalories: number
+} {
+  // Mifflin-St Jeor Equation
+  const baseBMR =
+    profile.gender === 'male'
+      ? 10 * profile.weight + 6.25 * profile.height - 5 * profile.age + 5
+      : 10 * profile.weight + 6.25 * profile.height - 5 * profile.age - 161
+
+  const activityMultipliers = {
+    sedentary: 1.2, // 거의 운동 안함
+    light: 1.375, // 주 1~3회
+    moderate: 1.55, // 주 3~5회
+    active: 1.725, // 주 6~7회
+  }
+
+  const tdee = Math.round(baseBMR * activityMultipliers[profile.activityLevel])
+
+  let targetCalories = tdee
+  if (profile.goal === 'lose') {
+    targetCalories = Math.max(1200, tdee - 500) // 500 kcal deficit
+  } else if (profile.goal === 'gain') {
+    targetCalories = tdee + 400
+  }
+
+  return {
+    bmr: Math.round(baseBMR),
+    tdee,
+    targetCalories,
+  }
+}
 
 export type CalcSuccess = {
   ok: true
