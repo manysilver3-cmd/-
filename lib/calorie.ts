@@ -177,7 +177,17 @@ export const FOOD_DB: Record<string, number> = {
   아보카도: 200,
   견과류: 150,
 
-  // Drinks (음료 및 주류)
+  // Drinks & Water (음료, 수분 및 주류)
+  물: 0,
+  생수: 0,
+  얼음물: 0,
+  탄산수: 0,
+  보리차: 0,
+  녹차: 0,
+  홍차: 0,
+  옥수수수염차: 0,
+  우롱차: 0,
+  곤약: 10,
   콜라: 150, // per 캔
   사이다: 140,
   제로콜라: 0,
@@ -719,6 +729,12 @@ function parseToken(token: string): { name: string; quantity: number } | null {
 
 // Synonyms and colloquial terms map
 const SYNONYMS: Record<string, string> = {
+  생수: '물',
+  정수: '물',
+  찬물: '물',
+  얼음물: '물',
+  따뜻한물: '물',
+  미온수: '물',
   아아: '아이스아메리카노',
   뜨아: '아메리카노',
   커피한잔: '아메리카노',
@@ -760,14 +776,21 @@ function matchFood(name: string): { key: string; brandLabel?: string } | null {
   // 2. Synonym exact
   if (SYNONYMS[clean] && FOOD_DB[SYNONYMS[clean]] !== undefined) return { key: SYNONYMS[clean] }
 
-  // 3. Includes matching
   const keys = Object.keys(FOOD_DB).filter((k) => !k.startsWith('__brand__'))
-  const directFound = keys.find((k) => clean.includes(k) || k.includes(clean))
-  if (directFound) return { key: directFound }
 
-  // 4. Synonyms includes matching
+  // 3. User input contains exact food key (e.g., "시원한아이스아메리카노" -> matches "아이스아메리카노")
+  const inputContainsFood = keys.find((k) => clean.includes(k))
+  if (inputContainsFood) return { key: inputContainsFood }
+
+  // 4. Food key contains user input — ONLY if input is 2+ characters to prevent "물" matching "물냉면"
+  if (clean.length >= 2) {
+    const foodContainsInput = keys.find((k) => k.includes(clean))
+    if (foodContainsInput) return { key: foodContainsInput }
+  }
+
+  // 5. Synonyms includes matching
   for (const [syn, target] of Object.entries(SYNONYMS)) {
-    if (clean.includes(syn) || syn.includes(clean)) {
+    if (clean === syn || (clean.length >= 2 && (clean.includes(syn) || syn.includes(clean)))) {
       return { key: target }
     }
   }
