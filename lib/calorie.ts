@@ -458,6 +458,79 @@ export const BRAND_MENU_DB: Record<string, Record<string, { kcal: number; label:
     아이스크림: { kcal: 200, label: '배스킨라빈스 아이스크림 싱글' },
   },
 
+  // ── 60계 치킨 ────────────────────────────────────────────────────────────
+  '60계치킨': {
+    간지치킨: { kcal: 2200, label: '60계 간지치킨 1마리' },
+    고추치킨: { kcal: 2150, label: '60계 고추치킨 1마리' },
+    크크크치킨: { kcal: 2350, label: '60계 크크크치킨 1마리' },
+    호랑이치킨: { kcal: 2300, label: '60계 호랑이치킨 1마리' },
+    후라이드: { kcal: 1950, label: '60계 후라이드 1마리' },
+    양념치킨: { kcal: 2250, label: '60계 양념치킨 1마리' },
+    간지순살: { kcal: 1650, label: '60계 간지순살' },
+    고추순살: { kcal: 1600, label: '60계 고추순살' },
+    크크크순살: { kcal: 1750, label: '60계 크크크순살' },
+    쫀득치즈볼: { kcal: 320, label: '60계 쫀득치즈볼 5개' },
+  },
+
+  // ── BHC ───────────────────────────────────────────────────────────────────
+  BHC: {
+    뿌링클: { kcal: 2280, label: 'BHC 뿌링클 1마리' },
+    맛초킹: { kcal: 2150, label: 'BHC 맛초킹 1마리' },
+    골드킹: { kcal: 2100, label: 'BHC 골드킹 1마리' },
+    레드킹: { kcal: 2120, label: 'BHC 레드킹 1마리' },
+    뿌링클순살: { kcal: 1980, label: 'BHC 뿌링클순살' },
+    후라이드: { kcal: 1980, label: 'BHC 해바라기 후라이드 1마리' },
+    양념치킨: { kcal: 2250, label: 'BHC 양념치킨 1마리' },
+    뿌링치즈볼: { kcal: 350, label: 'BHC 뿌링치즈볼 5개' },
+    달콤바삭치즈볼: { kcal: 330, label: 'BHC 달콤바삭치즈볼 5개' },
+  },
+
+  // ── 굽네치킨 ─────────────────────────────────────────────────────────────
+  굽네치킨: {
+    고추바사삭: { kcal: 1450, label: '굽네 고추바사삭 1마리' },
+    오리지널: { kcal: 1100, label: '굽네 오리지널 1마리' },
+    볼케이노: { kcal: 1350, label: '굽네 볼케이노 1마리' },
+    갈비천왕: { kcal: 1550, label: '굽네 갈비천왕 1마리' },
+    남해마늘바사삭: { kcal: 1480, label: '굽네 남해마늘바사삭 1마리' },
+    오븐바사삭: { kcal: 1250, label: '굽네 오븐바사삭 1마리' },
+    고추바사삭순살: { kcal: 1350, label: '굽네 고추바사삭 순살' },
+    굽네치즈볼: { kcal: 290, label: '굽네 치즈볼 4개' },
+  },
+
+  // ── 푸라닭 ───────────────────────────────────────────────────────────────
+  푸라닭: {
+    블랙알리오: { kcal: 2050, label: '푸라닭 블랙알리오 1마리' },
+    고추마요치킨: { kcal: 2100, label: '푸라닭 고추마요치킨 1마리' },
+    콘소메이징: { kcal: 2250, label: '푸라닭 콘소메이징 1마리' },
+    바질페스타: { kcal: 2150, label: '푸라닭 바질페스타 1마리' },
+    오리지널: { kcal: 1850, label: '푸라닭 오리지널 1마리' },
+    블랙투움바: { kcal: 2200, label: '푸라닭 블랙투움바 1마리' },
+    블랙치즈볼: { kcal: 340, label: '푸라닭 블랙치즈볼 5개' },
+  },
+
+  // ── 자담치킨 ─────────────────────────────────────────────────────────────
+  자담치킨: {
+    맵슐랭: { kcal: 2250, label: '자담 맵슐랭 1마리' },
+    후라이드: { kcal: 1900, label: '자담 후라이드 1마리' },
+    양념치킨: { kcal: 2150, label: '자담 양념치킨 1마리' },
+    생그라미: { kcal: 2050, label: '자담 생그라미 1마리' },
+  },
+
+  // ── 노랑통닭 ─────────────────────────────────────────────────────────────
+  노랑통닭: {
+    알싸한마늘치킨: { kcal: 2100, label: '노랑통닭 알싸한 마늘치킨 1마리' },
+    엄청큰후라이드: { kcal: 2200, label: '노랑통닭 엄청큰 후라이드 1마리' },
+    엄청큰양념치킨: { kcal: 2450, label: '노랑통닭 엄청큰 양념치킨 1마리' },
+    엄청큰깐풍치킨: { kcal: 2350, label: '노랑통닭 엄청큰 깐풍치킨 1마리' },
+  },
+
+  // ── 처갓집양념통닭 ───────────────────────────────────────────────────────
+  처갓집: {
+    슈프림양념치킨: { kcal: 2600, label: '처갓집 슈프림양념치킨 1마리' },
+    후라이드: { kcal: 1950, label: '처갓집 후라이드 1마리' },
+    양념치킨: { kcal: 2300, label: '처갓집 양념치킨 1마리' },
+  },
+
   // ── 맥날 / 서브웨이 / 도미노 / 피자헛 ───────────────────────────────────
   서브웨이: {
     에그마요샌드위치: { kcal: 449, label: '서브웨이 에그마요 (6인치)' },
@@ -507,6 +580,22 @@ export const BRAND_ALIASES: Record<string, string> = {
   bbq: 'BBQ',
   bbq치킨: 'BBQ',
   비비큐: 'BBQ',
+  '60계': '60계치킨',
+  '60계치킨': '60계치킨',
+  육십계: '60계치킨',
+  육십계치킨: '60계치킨',
+  bhc: 'BHC',
+  비에이치씨: 'BHC',
+  굽네: '굽네치킨',
+  굽네치킨: '굽네치킨',
+  푸라닭: '푸라닭',
+  푸라닥: '푸라닭',
+  자담: '자담치킨',
+  자담치킨: '자담치킨',
+  노랑통닭: '노랑통닭',
+  노랑: '노랑통닭',
+  처갓집: '처갓집',
+  처갓집양념치킨: '처갓집',
   스벅: '스타벅스',
   sbux: '스타벅스',
   스타벅: '스타벅스',
@@ -528,28 +617,40 @@ export const BRAND_ALIASES: Record<string, string> = {
 export function lookupBrandMenu(raw: string): { label: string; kcal: number } | null {
   const clean = raw.replace(/\s+/g, '').toLowerCase()
 
+  // 1. Check with Brand Name / Brand Alias matching
   for (const [brandKey, menus] of Object.entries(BRAND_MENU_DB)) {
     const normalizedBrand = brandKey.toLowerCase()
-    // Check if the input starts with this brand or a known alias of it
     const brandAliasKeys = Object.entries(BRAND_ALIASES)
       .filter(([, v]) => v === brandKey)
       .map(([k]) => k.toLowerCase())
     const allBrandNames = [normalizedBrand, ...brandAliasKeys]
 
     for (const bName of allBrandNames) {
-      if (clean.startsWith(bName)) {
-        const rest = clean.slice(bName.length)
+      if (clean.includes(bName)) {
         // Try longest-match menu first
         const sortedMenus = Object.keys(menus).sort((a, b) => b.length - a.length)
         for (const menuKey of sortedMenus) {
           const normalizedMenu = menuKey.toLowerCase()
-          if (rest.includes(normalizedMenu) || rest === normalizedMenu) {
+          if (clean.includes(normalizedMenu)) {
             return menus[menuKey]
           }
         }
       }
     }
   }
+
+  // 2. Direct menu matching without explicit brand name (for famous unique menus like 간지치킨, 뿌링클, 고추바사삭, 싸이버거, 와퍼, 빅맥)
+  for (const [brandKey, menus] of Object.entries(BRAND_MENU_DB)) {
+    const sortedMenus = Object.keys(menus).sort((a, b) => b.length - a.length)
+    for (const menuKey of sortedMenus) {
+      const normalizedMenu = menuKey.toLowerCase()
+      // Only match if menu length >= 3 to avoid generic short names matching falsely
+      if (normalizedMenu.length >= 3 && clean.includes(normalizedMenu)) {
+        return menus[menuKey]
+      }
+    }
+  }
+
   return null
 }
 
