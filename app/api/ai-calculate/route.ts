@@ -1,5 +1,15 @@
 import { NextResponse } from 'next/server'
-import { calculate as fallbackCalculate, WORKOUTS } from '@/lib/calorie'
+import { calculate as fallbackCalculate, WORKOUTS, BRAND_MENU_DB } from '@/lib/calorie'
+
+// Convert BRAND_MENU_DB to a compact text format for the prompt
+const brandDBText = Object.entries(BRAND_MENU_DB)
+  .map(([brand, menus]) => {
+    const menuList = Object.entries(menus)
+      .map(([menuName, data]) => `${data.label}: ${data.kcal}kcal`)
+      .join(', ')
+    return `[${brand}] ${menuList}`
+  })
+  .join('\n')
 
 export type AINutritionFeedback = {
   summary: string
@@ -70,7 +80,11 @@ export async function POST(req: Request) {
 1. 한국인의 일반적인 1회 섭취량 기준(외식/가공식품 포함)으로 정확한 칼로리를 추정하세요.
 2. 수량(개, 조각, 공기, 캔, 잔, 그릇, 인분 등)을 파악하여 개별 총 칼로리를 계산하세요.
 3. feedback에는 식단의 탄단지 균형 평가, 건강 팁 2가지를 친절하고 전문적으로 담으세요.
-4. 반드시 유효한 JSON 문자열만 출력하세요.`
+4. 아래 제공된 [브랜드별 메뉴 칼로리 DB]에 매칭되는 음식이 있다면 반드시 해당 정확한 명칭과 칼로리(kcal)를 사용하세요.
+5. 반드시 유효한 JSON 문자열만 출력하세요.
+
+[브랜드별 메뉴 칼로리 DB]
+${brandDBText}`
 
     const prompt = `사용자 식단 입력: "${text}"
 

@@ -260,6 +260,289 @@ export type UserProfile = {
   goal: 'lose' | 'maintain' | 'gain'
 }
 
+// ─── Brand Menu DB ────────────────────────────────────────────────────────────
+// 실제 공식 영양 정보 기준 (kcal). 메뉴명은 공백 제거된 형태로 키 저장.
+export const BRAND_MENU_DB: Record<string, Record<string, { kcal: number; label: string }>> = {
+  // ── 맘스터치 ──────────────────────────────────────────────────────────────
+  맘스터치: {
+    싸이버거: { kcal: 588, label: '맘스터치 싸이버거' },
+    싸이버거세트: { kcal: 985, label: '맘스터치 싸이버거 세트' },
+    더블싸이버거: { kcal: 831, label: '맘스터치 더블싸이버거' },
+    더블싸이버거세트: { kcal: 1228, label: '맘스터치 더블싸이버거 세트' },
+    허니버거: { kcal: 528, label: '맘스터치 허니버거' },
+    허니버거세트: { kcal: 925, label: '맘스터치 허니버거 세트' },
+    불싸이버거: { kcal: 611, label: '맘스터치 불싸이버거' },
+    불싸이버거세트: { kcal: 1008, label: '맘스터치 불싸이버거 세트' },
+    싸이순살: { kcal: 309, label: '맘스터치 싸이순살' },
+    싸이순살세트: { kcal: 706, label: '맘스터치 싸이순살 세트' },
+    뿌링클순살: { kcal: 289, label: '맘스터치 뿌링클순살' },
+    싸이버거주니어: { kcal: 392, label: '맘스터치 싸이버거 주니어' },
+    맘스핫도그: { kcal: 381, label: '맘스터치 핫도그' },
+  },
+
+  // ── 맥도날드 (McDonald's) ─────────────────────────────────────────────────
+  맥도날드: {
+    빅맥: { kcal: 530, label: '맥도날드 빅맥' },
+    빅맥세트: { kcal: 975, label: '맥도날드 빅맥 세트' },
+    더블빅맥: { kcal: 734, label: '맥도날드 더블 빅맥' },
+    더블빅맥세트: { kcal: 1179, label: '맥도날드 더블 빅맥 세트' },
+    상하이버거: { kcal: 544, label: '맥도날드 상하이 버거' },
+    상하이버거세트: { kcal: 989, label: '맥도날드 상하이 버거 세트' },
+    맥스파이시상하이버거: { kcal: 508, label: '맥도날드 맥스파이시 상하이버거' },
+    맥스파이시상하이버거세트: { kcal: 953, label: '맥도날드 맥스파이시 상하이버거 세트' },
+    쿼터파운더치즈: { kcal: 517, label: '맥도날드 쿼터파운더 치즈' },
+    쿼터파운더치즈세트: { kcal: 962, label: '맥도날드 쿼터파운더 치즈 세트' },
+    '1955버거': { kcal: 556, label: '맥도날드 1955 버거' },
+    '1955버거세트': { kcal: 1001, label: '맥도날드 1955 버거 세트' },
+    맥치킨: { kcal: 417, label: '맥도날드 맥치킨' },
+    맥치킨세트: { kcal: 862, label: '맥도날드 맥치킨 세트' },
+    에그맥머핀: { kcal: 311, label: '맥도날드 에그 맥머핀' },
+    해쉬브라운: { kcal: 150, label: '맥도날드 해쉬브라운' },
+    맥모닝세트: { kcal: 503, label: '맥도날드 맥모닝 세트' },
+    감자튀김중: { kcal: 337, label: '맥도날드 감자튀김 M' },
+    감자튀김대: { kcal: 448, label: '맥도날드 감자튀김 L' },
+    코카콜라: { kcal: 146, label: '맥도날드 코카콜라 M' },
+    맥카페아메리카노: { kcal: 10, label: '맥도날드 맥카페 아메리카노' },
+    맥플러리: { kcal: 297, label: '맥도날드 맥플러리' },
+  },
+
+  // ── 버거킹 (Burger King) ─────────────────────────────────────────────────
+  버거킹: {
+    와퍼: { kcal: 633, label: '버거킹 와퍼' },
+    와퍼세트: { kcal: 1118, label: '버거킹 와퍼 세트' },
+    더블와퍼: { kcal: 924, label: '버거킹 더블 와퍼' },
+    더블와퍼세트: { kcal: 1409, label: '버거킹 더블 와퍼 세트' },
+    통새우와퍼: { kcal: 634, label: '버거킹 통새우와퍼' },
+    통새우와퍼세트: { kcal: 1119, label: '버거킹 통새우와퍼 세트' },
+    스파이시와퍼: { kcal: 643, label: '버거킹 스파이시 와퍼' },
+    스파이시와퍼세트: { kcal: 1128, label: '버거킹 스파이시 와퍼 세트' },
+    치킨킹: { kcal: 609, label: '버거킹 치킨킹' },
+    치킨킹세트: { kcal: 1094, label: '버거킹 치킨킹 세트' },
+    불고기와퍼: { kcal: 573, label: '버거킹 불고기 와퍼' },
+    불고기와퍼세트: { kcal: 1058, label: '버거킹 불고기 와퍼 세트' },
+    어니언링: { kcal: 410, label: '버거킹 어니언링 M' },
+  },
+
+  // ── 롯데리아 ──────────────────────────────────────────────────────────────
+  롯데리아: {
+    불고기버거: { kcal: 440, label: '롯데리아 불고기버거' },
+    불고기버거세트: { kcal: 897, label: '롯데리아 불고기버거 세트' },
+    새우버거: { kcal: 530, label: '롯데리아 새우버거' },
+    새우버거세트: { kcal: 987, label: '롯데리아 새우버거 세트' },
+    한우불고기버거: { kcal: 483, label: '롯데리아 한우불고기버거' },
+    한우불고기버거세트: { kcal: 940, label: '롯데리아 한우불고기버거 세트' },
+    모짜렐라인더버거: { kcal: 603, label: '롯데리아 모짜렐라인더버거' },
+    치즈버거: { kcal: 450, label: '롯데리아 치즈버거' },
+    AZ버거: { kcal: 720, label: '롯데리아 AZ버거' },
+    새우크리스피버거: { kcal: 548, label: '롯데리아 새우크리스피버거' },
+    오징어버거: { kcal: 435, label: '롯데리아 오징어버거' },
+    감자튀김: { kcal: 370, label: '롯데리아 감자튀김 M' },
+  },
+
+  // ── KFC ───────────────────────────────────────────────────────────────────
+  KFC: {
+    징거버거: { kcal: 490, label: 'KFC 징거버거' },
+    징거버거세트: { kcal: 987, label: 'KFC 징거버거 세트' },
+    타워버거: { kcal: 618, label: 'KFC 타워버거' },
+    타워버거세트: { kcal: 1115, label: 'KFC 타워버거 세트' },
+    오리지널치킨: { kcal: 249, label: 'KFC 오리지널 치킨 1조각' },
+    핫크리스피치킨: { kcal: 260, label: 'KFC 핫크리스피 치킨 1조각' },
+    치킨너겟: { kcal: 220, label: 'KFC 치킨너겟 4조각' },
+    오리지널박스: { kcal: 917, label: 'KFC 오리지널 박스' },
+    핫윙: { kcal: 81, label: 'KFC 핫윙 1개' },
+    코울슬로: { kcal: 145, label: 'KFC 코울슬로' },
+    비스킷: { kcal: 208, label: 'KFC 비스킷' },
+  },
+
+  // ── 교촌치킨 ─────────────────────────────────────────────────────────────
+  교촌: {
+    허니오리지날반마리: { kcal: 886, label: '교촌 허니오리지날 반마리' },
+    허니오리지날한마리: { kcal: 1772, label: '교촌 허니오리지날 한마리' },
+    허니콤보: { kcal: 1720, label: '교촌 허니콤보' },
+    레드오리지날반마리: { kcal: 904, label: '교촌 레드오리지날 반마리' },
+    레드순살반마리: { kcal: 664, label: '교촌 레드순살 반마리' },
+    레드순살한마리: { kcal: 1328, label: '교촌 레드순살 한마리' },
+    오리지날순살반마리: { kcal: 625, label: '교촌 오리지날순살 반마리' },
+    허니순살반마리: { kcal: 680, label: '교촌 허니순살 반마리' },
+    교촌스틱: { kcal: 204, label: '교촌 교촌스틱' },
+  },
+
+  // ── BBQ 치킨 ─────────────────────────────────────────────────────────────
+  BBQ: {
+    황금올리브치킨반마리: { kcal: 840, label: 'BBQ 황금올리브 치킨 반마리' },
+    황금올리브치킨한마리: { kcal: 1680, label: 'BBQ 황금올리브 치킨 한마리' },
+    자메이카통다리구이: { kcal: 560, label: 'BBQ 자메이카통다리구이 3조각' },
+    고추바사삭반마리: { kcal: 820, label: 'BBQ 고추바사삭 반마리' },
+    양념치킨반마리: { kcal: 870, label: 'BBQ 양념치킨 반마리' },
+    뿌링클반마리: { kcal: 855, label: 'BBQ 뿌링클 반마리' },
+    콜팝치킨: { kcal: 295, label: 'BBQ 콜팝치킨' },
+    닭껍질튀김: { kcal: 390, label: 'BBQ 닭껍질튀김' },
+  },
+
+  // ── 스타벅스 (Starbucks) ─────────────────────────────────────────────────
+  스타벅스: {
+    아메리카노: { kcal: 10, label: '스타벅스 아메리카노 Tall' },
+    아이스아메리카노: { kcal: 10, label: '스타벅스 아이스 아메리카노 Tall' },
+    카페라떼: { kcal: 180, label: '스타벅스 카페라떼 Tall' },
+    아이스카페라떼: { kcal: 120, label: '스타벅스 아이스 카페라떼 Tall' },
+    카라멜마키아또: { kcal: 250, label: '스타벅스 카라멜마키아또 Tall' },
+    아이스카라멜마키아또: { kcal: 220, label: '스타벅스 아이스 카라멜마키아또 Tall' },
+    그린티라떼: { kcal: 260, label: '스타벅스 그린티라떼 Tall' },
+    돌체라떼: { kcal: 300, label: '스타벅스 돌체라떼 Tall' },
+    바닐라라떼: { kcal: 280, label: '스타벅스 바닐라라떼 Tall' },
+    자바칩프라푸치노: { kcal: 470, label: '스타벅스 자바칩 프라푸치노 Tall' },
+    딸기프라푸치노: { kcal: 380, label: '스타벅스 딸기 프라푸치노 Tall' },
+    스타벅스라떼: { kcal: 180, label: '스타벅스 라떼 Tall' },
+    핑크드링크: { kcal: 110, label: '스타벅스 핑크드링크 Tall' },
+    치즈케이크: { kcal: 460, label: '스타벅스 뉴욕 치즈케이크' },
+    크루아상: { kcal: 310, label: '스타벅스 크루아상' },
+  },
+
+  // ── 이디야커피 ────────────────────────────────────────────────────────────
+  이디야: {
+    아메리카노: { kcal: 10, label: '이디야 아메리카노 M' },
+    아이스아메리카노: { kcal: 10, label: '이디야 아이스 아메리카노 M' },
+    카페라떼: { kcal: 170, label: '이디야 카페라떼 M' },
+    아이스카페라떼: { kcal: 130, label: '이디야 아이스 카페라떼 M' },
+    바닐라라떼: { kcal: 270, label: '이디야 바닐라라떼 M' },
+    카라멜마키아또: { kcal: 240, label: '이디야 카라멜마키아또 M' },
+    말차라떼: { kcal: 240, label: '이디야 말차라떼 M' },
+    딸기라떼: { kcal: 290, label: '이디야 딸기라떼 M' },
+  },
+
+  // ── 롯데리아 추가 (lotteria 영문 동일 브랜드) 별칭은 BRAND_ALIASES로 처리
+  // ── 파리바게뜨 ────────────────────────────────────────────────────────────
+  파리바게뜨: {
+    소금빵: { kcal: 243, label: '파리바게뜨 소금빵' },
+    크루아상: { kcal: 280, label: '파리바게뜨 크루아상' },
+    식빵: { kcal: 260, label: '파리바게뜨 식빵 2조각' },
+    단팥빵: { kcal: 310, label: '파리바게뜨 단팥빵' },
+    크림빵: { kcal: 290, label: '파리바게뜨 크림빵' },
+    딸기케이크: { kcal: 380, label: '파리바게뜨 딸기 케이크 1조각' },
+    치즈케이크: { kcal: 420, label: '파리바게뜨 치즈케이크 1조각' },
+    샌드위치: { kcal: 360, label: '파리바게뜨 샌드위치' },
+    카스테라: { kcal: 340, label: '파리바게뜨 카스테라' },
+  },
+
+  // ── 뚜레쥬르 ──────────────────────────────────────────────────────────────
+  뚜레쥬르: {
+    소금빵: { kcal: 235, label: '뚜레쥬르 소금빵' },
+    크루아상: { kcal: 270, label: '뚜레쥬르 크루아상' },
+    단팥빵: { kcal: 295, label: '뚜레쥬르 단팥빵' },
+    크림빵: { kcal: 285, label: '뚜레쥬르 크림빵' },
+    샌드위치: { kcal: 350, label: '뚜레쥬르 샌드위치' },
+    딸기케이크: { kcal: 370, label: '뚜레쥬르 딸기 케이크 1조각' },
+  },
+
+  // ── 배스킨라빈스 ──────────────────────────────────────────────────────────
+  배스킨라빈스: {
+    싱글컵: { kcal: 200, label: '배스킨라빈스 싱글 컵' },
+    더블컵: { kcal: 400, label: '배스킨라빈스 더블 컵' },
+    패밀리컵: { kcal: 980, label: '배스킨라빈스 패밀리 컵' },
+    아이스크림케이크: { kcal: 350, label: '배스킨라빈스 아이스크림케이크 1조각' },
+    쿼터킬로: { kcal: 490, label: '배스킨라빈스 쿼터킬로' },
+    레인보우샤베트: { kcal: 170, label: '배스킨라빈스 레인보우 샤베트 싱글' },
+    피스타치오아몬드: { kcal: 230, label: '배스킨라빈스 피스타치오아몬드 싱글' },
+    민트초코칩: { kcal: 220, label: '배스킨라빈스 민트초코칩 싱글' },
+    아이스크림: { kcal: 200, label: '배스킨라빈스 아이스크림 싱글' },
+  },
+
+  // ── 맥날 / 서브웨이 / 도미노 / 피자헛 ───────────────────────────────────
+  서브웨이: {
+    에그마요샌드위치: { kcal: 449, label: '서브웨이 에그마요 (6인치)' },
+    BLT샌드위치: { kcal: 362, label: '서브웨이 BLT (6인치)' },
+    이탈리안BMT: { kcal: 536, label: '서브웨이 이탈리안 BMT (6인치)' },
+    스테이크앤치즈: { kcal: 428, label: '서브웨이 스테이크앤치즈 (6인치)' },
+    터키브레스트: { kcal: 330, label: '서브웨이 터키브레스트 (6인치)' },
+    BBQ치킨: { kcal: 429, label: '서브웨이 BBQ치킨 (6인치)' },
+    쿠키: { kcal: 220, label: '서브웨이 쿠키' },
+  },
+
+  도미노피자: {
+    슈퍼씨드치즈크러스트: { kcal: 280, label: '도미노 슈퍼씨드 치즈크러스트 1조각 (M)' },
+    포테이토피자: { kcal: 270, label: '도미노 포테이토피자 1조각 (M)' },
+    불닭피자: { kcal: 290, label: '도미노 불닭피자 1조각 (M)' },
+    페퍼로니피자: { kcal: 300, label: '도미노 페퍼로니피자 1조각 (M)' },
+    치즈크러스트피자: { kcal: 310, label: '도미노 치즈크러스트 1조각 (M)' },
+    핫윙: { kcal: 340, label: '도미노 핫윙 6개' },
+    갈릭브레드: { kcal: 290, label: '도미노 갈릭브레드' },
+  },
+
+  피자헛: {
+    슈프림피자: { kcal: 295, label: '피자헛 슈프림피자 1조각 (M)' },
+    치즈피자: { kcal: 275, label: '피자헛 치즈피자 1조각 (M)' },
+    불고기피자: { kcal: 305, label: '피자헛 불고기피자 1조각 (M)' },
+    페퍼로니피자: { kcal: 310, label: '피자헛 페퍼로니피자 1조각 (M)' },
+    파스타: { kcal: 520, label: '피자헛 파스타' },
+    윙스트릿: { kcal: 370, label: '피자헛 윙스트릿 5개' },
+  },
+}
+
+// Brand name aliases (for typos, informal names, etc.)
+export const BRAND_ALIASES: Record<string, string> = {
+  맘스: '맘스터치',
+  맘스터치치킨: '맘스터치',
+  맥날: '맥도날드',
+  맥도: '맥도날드',
+  맥디: '맥도날드',
+  맥도날드: '맥도날드',
+  mcd: '맥도날드',
+  버킹: '버거킹',
+  bk: '버거킹',
+  롯리아: '롯데리아',
+  kfc: 'KFC',
+  케이에프씨: 'KFC',
+  교촌치킨: '교촌',
+  bbq: 'BBQ',
+  bbq치킨: 'BBQ',
+  비비큐: 'BBQ',
+  스벅: '스타벅스',
+  sbux: '스타벅스',
+  스타벅: '스타벅스',
+  이디야커피: '이디야',
+  파바: '파리바게뜨',
+  파리바: '파리바게뜨',
+  뚜쥬: '뚜레쥬르',
+  뚜레: '뚜레쥬르',
+  배라: '배스킨라빈스',
+  배스킨: '배스킨라빈스',
+  br: '배스킨라빈스',
+  서브: '서브웨이',
+  도미노: '도미노피자',
+  도미노스: '도미노피자',
+  피헛: '피자헛',
+}
+
+// Flat lookup: resolve "brand + menu" tokens → kcal
+export function lookupBrandMenu(raw: string): { label: string; kcal: number } | null {
+  const clean = raw.replace(/\s+/g, '').toLowerCase()
+
+  for (const [brandKey, menus] of Object.entries(BRAND_MENU_DB)) {
+    const normalizedBrand = brandKey.toLowerCase()
+    // Check if the input starts with this brand or a known alias of it
+    const brandAliasKeys = Object.entries(BRAND_ALIASES)
+      .filter(([, v]) => v === brandKey)
+      .map(([k]) => k.toLowerCase())
+    const allBrandNames = [normalizedBrand, ...brandAliasKeys]
+
+    for (const bName of allBrandNames) {
+      if (clean.startsWith(bName)) {
+        const rest = clean.slice(bName.length)
+        // Try longest-match menu first
+        const sortedMenus = Object.keys(menus).sort((a, b) => b.length - a.length)
+        for (const menuKey of sortedMenus) {
+          const normalizedMenu = menuKey.toLowerCase()
+          if (rest.includes(normalizedMenu) || rest === normalizedMenu) {
+            return menus[menuKey]
+          }
+        }
+      }
+    }
+  }
+  return null
+}
+
+
 export function calculateDailyTargetCalories(profile: UserProfile): {
   bmr: number
   tdee: number
@@ -425,20 +708,33 @@ const SYNONYMS: Record<string, string> = {
   치즈스틱2개: '치즈스틱',
 }
 
-function matchFood(name: string): string | null {
+function matchFood(name: string): { key: string; brandLabel?: string } | null {
   const clean = name.replace(/\s+/g, '')
-  if (FOOD_DB[clean] !== undefined) return clean
-  if (SYNONYMS[clean] && FOOD_DB[SYNONYMS[clean]] !== undefined) return SYNONYMS[clean]
 
-  // Direct includes matching
-  const keys = Object.keys(FOOD_DB)
+  // 0. Brand menu DB — highest priority
+  const brandMatch = lookupBrandMenu(name)
+  if (brandMatch) {
+    // Store kcal in a virtual FOOD_DB entry keyed by label
+    const virtualKey = `__brand__${brandMatch.label}`
+    FOOD_DB[virtualKey] = brandMatch.kcal
+    return { key: virtualKey, brandLabel: brandMatch.label }
+  }
+
+  // 1. Exact match
+  if (FOOD_DB[clean] !== undefined) return { key: clean }
+
+  // 2. Synonym exact
+  if (SYNONYMS[clean] && FOOD_DB[SYNONYMS[clean]] !== undefined) return { key: SYNONYMS[clean] }
+
+  // 3. Includes matching
+  const keys = Object.keys(FOOD_DB).filter((k) => !k.startsWith('__brand__'))
   const directFound = keys.find((k) => clean.includes(k) || k.includes(clean))
-  if (directFound) return directFound
+  if (directFound) return { key: directFound }
 
-  // Synonyms includes matching
+  // 4. Synonyms includes matching
   for (const [syn, target] of Object.entries(SYNONYMS)) {
     if (clean.includes(syn) || syn.includes(clean)) {
-      return target
+      return { key: target }
     }
   }
 
@@ -477,12 +773,12 @@ export function calculate(rawInput: string): CalcResult {
       return { ok: false, code: 'invalid-quantity', message: '수량은 0보다 커야 합니다' }
     }
 
-    const key = matchFood(parsed.name)
-    if (key) {
+    const match = matchFood(parsed.name)
+    if (match) {
       items.push({
-        name: parsed.name,
+        name: match.brandLabel || parsed.name,
         quantity: parsed.quantity,
-        calories: Math.round(FOOD_DB[key] * parsed.quantity),
+        calories: Math.round(FOOD_DB[match.key] * parsed.quantity),
         known: true,
       })
     } else {
