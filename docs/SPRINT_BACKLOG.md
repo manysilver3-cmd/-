@@ -133,7 +133,22 @@
 
 ---
 
+## 🎨 Sprint 9: Daeun Vitality 프리미엄 네온 디자인 시스템 전면 적용
+- **기간**: Sprint 9
+- **목표**: `design.md` 명세에 맞춘 네온 글래스모피즘(Cyber Vitality & Neon Dark) 디자인 전면 리팩토링
+- **진행 상태**: 🟦 100% 검증 완료 (VERIFIED)
+
+### 태스크 목록
+| ID | 태스크 명 | 담당 / 영역 | 상태 | 완료 조건 (Acceptance Criteria) |
+| :--- | :--- | :--- | :---: | :--- |
+| **SP9-01** | Google Fonts(Space Grotesk, Inter) 도입 | `app/layout.tsx` | 🟦 검증완료 | `Space_Grotesk` 및 `Inter` 폰트 변수 연동 및 타이포그래피 정립 |
+| **SP9-02** | Daeun Vitality CSS 토큰 & 글로우 유틸리티 구성 | `app/globals.css` | 🟦 검증완료 | `#131315` 서피스, `#39ff14` 네온 라임, `#00f3ff` 사이언, `#ff0055` 마젠타 토큰 및 네온 글로우 클래스 작성 |
+| **SP9-03** | 메인 헤더, 인풋 카드 & 프로필 팝업 리팩토링 | `components/calorie-calculator.tsx`, `components/profile-panel.tsx` | 🟦 검증완료 | 네온 글래스모피즘 입력 폼 및 네온 듀오톤 버튼 UI 적용 |
+| **SP9-04** | 결과 리포트 및 운동 카드 네온 듀오톤 개편 | `components/result-section.tsx` | 🟦 검증완료 | 7종 운동 카드, AI 코칭 바, 장기 목표 현황 카드 네온 글로우 스타일로 전면 리뉴얼 |
+
+---
+
 ## 📊 스프린트 달성도 현황
-- **Sprint 1~7**: 100% (37/37 검증완료 🟦)
-- **Sprint 8**: 100% (3/3 검증완료 🟦)
-- **전체 진척도**: **100% (40/40 검증완료 🟦)**
+- **Sprint 1~8**: 100% (40/40 검증완료 🟦)
+- **Sprint 9**: 100% (4/4 검증완료 🟦)
+- **전체 진척도**: **100% (44/44 검증완료 🟦)**

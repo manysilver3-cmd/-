@@ -100,23 +100,24 @@ export function CalorieCalculator() {
     <div className="w-full max-w-2xl">
       <ProfilePanel onProfileChange={setUserProfile} />
       {/* Header */}
-      <header className="mb-6 text-center">
-        <div className="mb-3 inline-flex size-14 items-center justify-center rounded-2xl bg-flame/10 ring-1 ring-flame/20">
-          <Flame className="size-7 text-flame" aria-hidden="true" />
+      <header className="mb-8 text-center">
+        <div className="mb-2 inline-flex items-center gap-1.5 rounded-full border border-[#39ff14]/30 bg-[#39ff14]/10 px-3 py-1 text-[11px] font-bold text-[#39ff14] tracking-widest uppercase">
+          <Sparkles className="size-3 text-[#39ff14]" />
+          Daeun Vitality System
         </div>
-        <h1 className="text-2xl font-black tracking-tight text-balance sm:text-3xl">
+        <h1 className="text-3xl font-black font-display tracking-tight text-[#e6e1e5] sm:text-4xl">
           칼로리 &amp; 운동 시간 계산기
         </h1>
-        <p className="mx-auto mt-2 max-w-md text-sm text-muted-foreground text-pretty">
-          오늘 먹은 음식을 입력하면 총 칼로리와 이를 소모하는 데 필요한 운동 시간을 알려드려요.
+        <p className="mx-auto mt-2 max-w-md text-xs sm:text-sm text-[#cac4cf]">
+          오늘 섭취한 음식을 자유롭게 적어보세요. AI 및 정밀 엔진이 칼로리와 맞춤 운동 시간을 소모량별로 계산합니다.
         </p>
       </header>
 
       {/* Card */}
-      <div className="rounded-3xl border border-border bg-card p-5 shadow-lg shadow-black/5 sm:p-6">
+      <div className="glass-panel rounded-3xl p-5 shadow-2xl shadow-black/40 sm:p-6">
         {/* Input */}
-        <label htmlFor="food-input" className="mb-2 block text-sm font-semibold">
-          섭취한 음식
+        <label htmlFor="food-input" className="mb-2 block text-xs font-bold uppercase tracking-wider text-[#cac4cf]">
+          섭취한 음식 입력
         </label>
         <div className="relative">
           <textarea
@@ -128,12 +129,12 @@ export function CalorieCalculator() {
             rows={4}
             aria-invalid={!!fieldError}
             aria-describedby={fieldError ? 'food-error' : undefined}
-            placeholder="오늘 섭취한 음식을 입력해주세요 (예: 햄버거 1개, 치킨 2조각)"
-            className="w-full resize-none rounded-2xl border border-border bg-background px-4 py-3 text-sm leading-relaxed outline-none transition-colors placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/40 aria-invalid:border-destructive aria-invalid:ring-destructive/20"
+            placeholder="오늘 섭취한 음식을 입력해주세요 (예: 60계치킨 간지치킨, 아아 1잔, 햄버거 세트)"
+            className="w-full resize-none rounded-2xl border border-[#39393b] bg-[#131315]/90 px-4 py-3 text-sm leading-relaxed text-[#e6e1e5] outline-none transition-all placeholder:text-[#cac4cf]/50 focus-visible:border-[#39ff14] focus-visible:ring-2 focus-visible:ring-[#39ff14]/40 aria-invalid:border-[#ff0055] aria-invalid:ring-[#ff0055]/30"
           />
           <span
-            className={`pointer-events-none absolute right-3 bottom-3 text-xs tabular-nums transition-colors ${
-              counterDanger ? 'font-semibold text-destructive' : 'text-muted-foreground'
+            className={`pointer-events-none absolute right-3 bottom-3 text-xs font-mono tabular-nums transition-colors ${
+              counterDanger ? 'font-bold text-[#ff0055]' : 'text-[#cac4cf]/60'
             }`}
           >
             {input.length}/{MAX_LENGTH}
@@ -142,14 +143,14 @@ export function CalorieCalculator() {
 
         {/* Quick Examples */}
         <div className="mt-3 flex flex-wrap items-center gap-1.5">
-          <span className="text-xs font-medium text-muted-foreground">추천 식단:</span>
+          <span className="text-xs font-semibold text-[#cac4cf]/80">추천 식단:</span>
           {QUICK_EXAMPLES.slice(0, 3).map((ex) => (
             <button
               key={ex}
               type="button"
               onClick={() => handleSelectExample(ex)}
               disabled={loading}
-              className="rounded-lg border border-border/60 bg-muted/40 px-2 py-1 text-xs text-foreground/80 transition-colors hover:bg-muted hover:text-foreground disabled:opacity-50"
+              className="rounded-xl border border-[#39393b] bg-[#1c1b1d] px-2.5 py-1 text-xs text-[#e6e1e5] transition-all hover:border-[#39ff14]/50 hover:bg-[#39ff14]/10 hover:text-[#39ff14] disabled:opacity-50"
             >
               {ex}
             </button>
@@ -166,7 +167,7 @@ export function CalorieCalculator() {
             <p
               id="food-error"
               role="alert"
-              className="flex items-center gap-1.5 text-sm font-medium text-destructive"
+              className="flex items-center gap-1.5 text-xs font-bold text-[#ff0055]"
             >
               <AlertCircle className="size-4 shrink-0" aria-hidden="true" />
               {fieldError}
@@ -179,27 +180,27 @@ export function CalorieCalculator() {
           size="lg"
           onClick={runCalculation}
           disabled={loading}
-          className="mt-4 h-11 w-full rounded-2xl text-sm font-semibold shadow-md shadow-primary/10 transition-all hover:shadow-lg active:scale-[0.99]"
+          className="mt-4 h-12 w-full rounded-2xl bg-[#39ff14] text-[#003900] font-black font-display text-base tracking-wide neon-glow-primary transition-all hover:bg-[#39ff14]/90 hover:scale-[1.01] active:scale-[0.99]"
         >
           {loading ? (
             <>
-              <Loader2 className="size-4 animate-spin" aria-hidden="true" />
-              계산 중...
+              <Loader2 className="size-5 animate-spin text-[#003900]" aria-hidden="true" />
+              정밀 계산 실행 중...
             </>
           ) : (
             <>
-              <Sparkles className="size-4" aria-hidden="true" />
-              계산하기
+              <Sparkles className="size-5 text-[#003900]" aria-hidden="true" />
+              소모 운동량 정밀 계산하기
             </>
           )}
         </Button>
 
         {/* Recent History */}
         {history.length > 0 && (
-          <div className="mt-4 border-t border-border/60 pt-3">
-            <div className="flex items-center justify-between text-xs text-muted-foreground">
-              <span className="flex items-center gap-1 font-semibold text-foreground/80">
-                <History className="size-3.5" aria-hidden="true" />
+          <div className="mt-5 border-t border-[#39393b]/60 pt-3.5">
+            <div className="flex items-center justify-between text-xs text-[#cac4cf]">
+              <span className="flex items-center gap-1 font-bold text-[#e6e1e5]">
+                <History className="size-3.5 text-[#00f3ff]" aria-hidden="true" />
                 최근 계산 기록
               </span>
               <button
@@ -208,25 +209,25 @@ export function CalorieCalculator() {
                   clearHistory()
                   setHistory([])
                 }}
-                className="flex items-center gap-1 hover:text-destructive transition-colors"
+                className="flex items-center gap-1 text-xs text-[#cac4cf]/70 hover:text-[#ff0055] transition-colors"
                 title="기록 지우기"
               >
                 <Trash2 className="size-3" aria-hidden="true" />
                 기록 삭제
               </button>
             </div>
-            <div className="mt-2 flex flex-wrap gap-1.5">
+            <div className="mt-2.5 flex flex-wrap gap-1.5">
               {history.map((h) => (
                 <button
                   key={h.id}
                   type="button"
                   onClick={() => handleSelectExample(h.input)}
                   disabled={loading}
-                  className="group inline-flex items-center gap-1.5 rounded-full border border-border bg-background px-2.5 py-1 text-xs transition-colors hover:border-primary/50 hover:bg-primary/5"
+                  className="group inline-flex items-center gap-1.5 rounded-xl border border-[#39393b] bg-[#1c1b1d] px-3 py-1.5 text-xs transition-all hover:border-[#00f3ff]/60 hover:bg-[#00f3ff]/10"
                 >
-                  <Clock className="size-3 text-muted-foreground group-hover:text-primary" />
-                  <span className="truncate max-w-[150px] font-medium text-foreground">{h.input}</span>
-                  <span className="rounded bg-muted px-1 py-0.2 text-[10px] font-semibold text-flame">
+                  <Clock className="size-3 text-[#cac4cf]/60 group-hover:text-[#00f3ff]" />
+                  <span className="truncate max-w-[150px] font-medium text-[#e6e1e5]">{h.input}</span>
+                  <span className="rounded-md bg-[#ff0055]/15 px-1.5 py-0.5 text-[10px] font-bold text-[#ff0055]">
                     {h.totalCalories} kcal
                   </span>
                 </button>
@@ -235,9 +236,8 @@ export function CalorieCalculator() {
           </div>
         )}
 
-        <p className="mt-3 text-center text-xs text-muted-foreground">
-          팁: 결과를 불러오지 못하는 상황을 보려면 <span className="font-mono">error</span>를
-          입력해보세요.
+        <p className="mt-3 text-center text-[11px] text-[#cac4cf]/60">
+          💡 팁: 오류 대응 시뮬레이션을 보려면 <span className="font-mono text-[#39ff14]">error</span>를 입력해보세요.
         </p>
       </div>
 

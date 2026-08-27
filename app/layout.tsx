@@ -1,6 +1,6 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
-import { Noto_Sans_KR } from 'next/font/google'
+import { Noto_Sans_KR, Space_Grotesk, Inter } from 'next/font/google'
 import './globals.css'
 
 const notoSansKr = Noto_Sans_KR({
@@ -9,10 +9,22 @@ const notoSansKr = Noto_Sans_KR({
   variable: '--font-noto-sans-kr',
 })
 
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  weight: ['500', '600', '700'],
+  variable: '--font-space-grotesk',
+})
+
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-inter',
+})
+
 export const metadata: Metadata = {
-  title: '칼로리 & 운동 시간 계산기',
+  title: 'Daeun Vitality - 칼로리 & 운동 시간 계산기',
   description:
-    '오늘 먹은 음식을 입력하면 총 칼로리와 이를 소모하기 위한 운동 시간을 계산해 드립니다.',
+    '오늘 먹은 음식을 입력하면 총 칼로리와 이를 소모하기 위한 운동 시간을 정밀 계산해 드립니다.',
   generator: 'v0.app',
   icons: {
     icon: [
@@ -34,11 +46,8 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  colorScheme: 'light dark',
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: 'white' },
-    { media: '(prefers-color-scheme: dark)', color: 'black' },
-  ],
+  colorScheme: 'dark',
+  themeColor: '#131315',
 }
 
 export default function RootLayout({
@@ -47,8 +56,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="ko" className={`${notoSansKr.variable} bg-background`}>
-      <body className="font-sans antialiased">
+    <html lang="ko" className={`dark ${notoSansKr.variable} ${spaceGrotesk.variable} ${inter.variable} bg-[#131315]`}>
+      <body className="font-sans antialiased text-[#e6e1e5] bg-[#131315] selection:bg-[#39ff14] selection:text-[#003900]">
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>

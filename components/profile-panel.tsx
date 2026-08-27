@@ -65,36 +65,26 @@ export function ProfilePanel({ onProfileChange }: Props) {
 
   return (
     <div className="fixed top-4 right-4 z-50 flex items-center gap-2">
-      {/* Dark mode toggle */}
-      <button
-        type="button"
-        onClick={handleToggleDark}
-        aria-label="다크모드 전환"
-        className="flex size-9 items-center justify-center rounded-xl border border-border bg-card/90 text-muted-foreground shadow-sm backdrop-blur-sm transition-colors hover:bg-muted hover:text-foreground"
-      >
-        {darkMode ? <Sun className="size-4" /> : <Moon className="size-4" />}
-      </button>
-
       {/* Profile button */}
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="flex items-center gap-1.5 rounded-xl border border-border bg-card/90 px-3 py-2 text-xs font-semibold text-foreground shadow-sm backdrop-blur-sm transition-colors hover:bg-muted"
+        className="flex items-center gap-1.5 rounded-2xl border border-[#39ff14]/40 bg-[#232325]/90 px-3.5 py-2 text-xs font-bold text-[#e6e1e5] shadow-lg backdrop-blur-md transition-all hover:border-[#39ff14] hover:bg-[#232325]"
       >
-        <User className="size-3.5 text-primary" />
+        <User className="size-3.5 text-[#39ff14]" />
         {saved ? `${saved.weight}kg · ${saved.goal === 'lose' ? '감량' : saved.goal === 'gain' ? '증량' : '유지'}` : '내 프로필'}
-        <ChevronDown className={`size-3.5 transition-transform ${open ? 'rotate-180' : ''}`} />
+        <ChevronDown className={`size-3.5 text-[#cac4cf] transition-transform ${open ? 'rotate-180' : ''}`} />
       </button>
 
       {/* Profile drawer */}
       {open && (
-        <div className="absolute right-0 top-12 w-80 rounded-2xl border border-border bg-card shadow-xl shadow-black/10 p-5">
+        <div className="absolute right-0 top-12 w-80 rounded-3xl border border-[#39ff14]/30 bg-[#232325]/95 p-5 shadow-2xl shadow-black/80 backdrop-blur-xl animate-in fade-in zoom-in-95">
           <div className="mb-4 flex items-center justify-between">
-            <h3 className="text-sm font-bold">내 신체 프로필 설정</h3>
+            <h3 className="text-sm font-bold font-display text-[#e6e1e5]">내 신체 프로필 설정</h3>
             <button
               type="button"
               onClick={() => setOpen(false)}
-              className="rounded-lg p-1 text-muted-foreground hover:bg-muted"
+              className="rounded-xl p-1 text-[#cac4cf] hover:bg-[#39393b] hover:text-[#e6e1e5]"
             >
               <X className="size-4" />
             </button>

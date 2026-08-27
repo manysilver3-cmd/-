@@ -6,13 +6,13 @@ import type { UserProfile } from '@/lib/calorie'
 import { calculateDailyTargetCalories, calculateLongTermGoal } from '@/lib/calorie'
 
 const WORKOUT_CONFIG: Record<string, { icon: typeof Footprints; color: string }> = {
-  walk:  { icon: Footprints,     color: 'var(--leaf)' },
-  run:   { icon: Zap,            color: 'var(--flame)' },
-  bike:  { icon: Bike,           color: 'var(--sky)' },
-  stair: { icon: Activity,       color: 'var(--leaf)' },
-  rope:  { icon: PersonStanding, color: 'var(--flame)' },
-  swim:  { icon: Waves,          color: 'var(--sky)' },
-  homet: { icon: Dumbbell,       color: 'var(--leaf)' },
+  walk:  { icon: Footprints,     color: '#39ff14' },
+  run:   { icon: Zap,            color: '#ff0055' },
+  bike:  { icon: Bike,           color: '#00f3ff' },
+  stair: { icon: Activity,       color: '#39ff14' },
+  rope:  { icon: PersonStanding, color: '#ff0055' },
+  swim:  { icon: Waves,          color: '#00f3ff' },
+  homet: { icon: Dumbbell,       color: '#39ff14' },
 }
 
 function formatNumber(n: number) {
@@ -42,22 +42,22 @@ function SectionCard({
   children: React.ReactNode
 }) {
   return (
-    <section className="rounded-3xl border border-border bg-card p-5 shadow-md shadow-black/5 transition-all sm:p-6">
+    <section className="glass-panel rounded-3xl p-5 shadow-xl transition-all sm:p-6">
       <div className="mb-4 flex items-center justify-between">
         <div className="flex items-center gap-2.5">
           <span
-            className="flex size-9 items-center justify-center rounded-xl ring-1"
+            className="flex size-9 items-center justify-center rounded-xl border border-border"
             style={{
-              backgroundColor: `color-mix(in oklch, ${accent} 12%, transparent)`,
-              borderColor: `color-mix(in oklch, ${accent} 25%, transparent)`,
+              backgroundColor: `color-mix(in srgb, ${accent} 15%, transparent)`,
+              borderColor: `color-mix(in srgb, ${accent} 40%, transparent)`,
             }}
           >
             <Icon className="size-4.5" style={{ color: accent }} aria-hidden="true" />
           </span>
-          <h3 className="text-base font-bold tracking-tight text-foreground">{title}</h3>
+          <h3 className="text-base font-bold font-display tracking-tight text-[#e6e1e5]">{title}</h3>
         </div>
         {lineBadge && (
-          <span className="rounded-full bg-muted px-2.5 py-0.5 text-xs font-semibold text-muted-foreground">
+          <span className="rounded-full bg-[#1c1b1d] border border-[#39393b] px-3 py-0.5 text-[11px] font-bold text-[#cac4cf]">
             {lineBadge}
           </span>
         )}
