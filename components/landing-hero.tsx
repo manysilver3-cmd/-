@@ -24,20 +24,15 @@ export function LandingHero({ onStartCalculator }: Props) {
       </div>
 
       {/* Hero Headline */}
-      <div className="text-center mb-10 space-y-3 max-w-3xl">
-        {/* Daeun by-line */}
-        <p className="font-mono text-xs text-[#00f3ff] tracking-[0.35em] uppercase mb-1 glow-text-secondary">
-          CRAFTED BY // DA-EUN
-        </p>
-        <h1 className="font-display font-black uppercase leading-none tracking-tighter">
-          <span className="block text-5xl md:text-7xl text-[#39ff14] glow-text-primary">DAEUN&apos;S</span>
-          <span className="block text-3xl md:text-5xl text-[#e6e1e5] mt-1">VITALITY ENGINE</span>
+      <div className="text-center mb-10 space-y-2 max-w-3xl">
+        <h1 className="font-display font-black tracking-tighter leading-none">
+          <span className="block text-7xl md:text-9xl text-[#39ff14] glow-text-primary">다은</span>
         </h1>
-        <p className="font-mono text-[11px] md:text-xs text-[#cac4cf]/70 tracking-widest uppercase pt-1">
-          CALORIE &amp; WORKOUT OPTIMIZATION PROTOCOL
+        <p className="font-mono text-xs md:text-sm text-[#00f3ff]/80 tracking-[0.25em] uppercase pt-2">
+          CALORIE &amp; WORKOUT ENGINE
         </p>
-        <p className="text-sm text-[#cac4cf]/80 max-w-2xl mx-auto leading-relaxed pt-2">
-          자연어 파싱 AI, 10여개 프랜차이즈 브랜드 DB, 12종 맞춤 운동 시간 및 목표 체중 감량 소모량을 실시간으로 동기화합니다.
+        <p className="text-xs text-[#cac4cf]/60 max-w-xl mx-auto leading-relaxed pt-3">
+          자연어 AI 파싱 · 12종 맞춤 운동 · 목표 체중 감량 소모량
         </p>
       </div>
 
