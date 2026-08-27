@@ -24,13 +24,11 @@ export function LandingHero({ onStartCalculator }: Props) {
       </div>
 
       {/* Hero Headline */}
-      <div className="text-center mb-10 space-y-2 max-w-3xl">
-        <h1 className="font-display font-black tracking-tighter leading-none">
-          <span className="block text-7xl md:text-9xl text-[#39ff14] glow-text-primary">다은</span>
+      <div className="text-center mb-10 space-y-3 max-w-3xl">
+        <h1 className="font-display font-black leading-tight tracking-tight">
+          <span className="block text-3xl md:text-4xl text-[#cac4cf] font-semibold">다은이가 만든</span>
+          <span className="block text-4xl md:text-6xl text-[#39ff14] glow-text-primary mt-1">칼로리 &amp; 운동시간 계산기</span>
         </h1>
-        <p className="font-mono text-xs md:text-sm text-[#00f3ff]/80 tracking-[0.25em] uppercase pt-2">
-          CALORIE &amp; WORKOUT ENGINE
-        </p>
         <p className="text-xs text-[#cac4cf]/60 max-w-xl mx-auto leading-relaxed pt-3">
           자연어 AI 파싱 · 12종 맞춤 운동 · 목표 체중 감량 소모량
         </p>
