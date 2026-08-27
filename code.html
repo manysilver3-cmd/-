@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DAEUN VITALITY - OPTIMIZATION COMPLETE</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-container": "#ad00ad",
+                        "on-surface-variant": "#baccb0",
+                        "on-error-container": "#ffdad6",
+                        "glow-primary": "rgba(57, 255, 20, 0.4)",
+                        "on-surface": "#e5e1e4",
+                        "on-primary-fixed-variant": "#095300",
+                        "on-tertiary": "#5b005b",
+                        "on-primary-fixed": "#022100",
+                        "inverse-surface": "#e5e1e4",
+                        "primary": "#efffe3",
+                        "tertiary": "#fff8f9",
+                        "secondary-container": "#00f1fd",
+                        "on-primary-container": "#107100",
+                        "on-background": "#e5e1e4",
+                        "on-tertiary-fixed": "#380038",
+                        "primary-fixed-dim": "#2ae500",
+                        "inverse-primary": "#106e00",
+                        "error-container": "#93000a",
+                        "tertiary-fixed-dim": "#ffabf3",
+                        "error": "#ffb4ab",
+                        "on-secondary": "#00373a",
+                        "on-secondary-fixed": "#002022",
+                        "inverse-on-surface": "#313032",
+                        "surface-bright": "#39393b",
+                        "surface-tint": "#2ae500",
+                        "surface-panel": "#131315",
+                        "grid-line": "rgba(57, 255, 20, 0.05)",
+                        "on-error": "#690005",
+                        "secondary": "#dcfdff",
+                        "on-secondary-container": "#006a6f",
+                        "on-tertiary-fixed-variant": "#810081",
+                        "secondary-fixed": "#6ff6ff",
+                        "primary-fixed": "#79ff5b",
+                        "surface-dim": "#131315",
+                        "background": "#131315",
+                        "surface-container-highest": "#353437",
+                        "outline": "#85967c",
+                        "primary-container": "#39ff14",
+                        "surface-container": "#201f21",
+                        "surface-bg": "#0a0a0c",
+                        "surface-container-lowest": "#0e0e10",
+                        "outline-variant": "#3c4b35",
+                        "glow-secondary": "rgba(0, 241, 253, 0.3)",
+                        "surface-container-low": "#1c1b1d",
+                        "surface": "#131315",
+                        "on-secondary-fixed-variant": "#004f53",
+                        "secondary-fixed-dim": "#00dce6",
+                        "surface-variant": "#353437",
+                        "surface-container-high": "#2a2a2c",
+                        "tertiary-container": "#ffcff5",
+                        "on-primary": "#053900",
+                        "tertiary-fixed": "#ffd7f5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "40px",
+                        "unit": "4px",
+                        "grid-size": "32px",
+                        "margin-mobile": "20px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "label-micro": ["JetBrains Mono"],
+                        "label-caps": ["JetBrains Mono"],
+                        "display-lg-mobile": ["Space Grotesk"],
+                        "display-lg": ["Space Grotesk"],
+                        "body-base": ["JetBrains Mono"],
+                        "data-numeric": ["Space Grotesk"],
+                        "headline-md": ["Space Grotesk"]
+                    },
+                    "fontSize": {
+                        "label-micro": ["10px", { "lineHeight": "1.0", "letterSpacing": "0.2em", "fontWeight": "700" }],
+                        "label-caps": ["12px", { "lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "700" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "700" }],
+                        "body-base": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "data-numeric": ["20px", { "lineHeight": "1.0", "fontWeight": "500" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #0a0a0c;
+            background-image: linear-gradient(rgba(57, 255, 20, 0.05) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(57, 255, 20, 0.05) 1px, transparent 1px);
+            background-size: 32px 32px;
+            color: #e5e1e4;
+            overflow-x: hidden;
+        }
+
+        .scanlines {
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.2));
+            background-size: 100% 4px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: 100;
+            opacity: 0.5;
+        }
+
+        .bevel-clip {
+            clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+        }
+        
+        .glow-text-primary {
+            text-shadow: 0 0 10px rgba(57,255,20,0.8);
+        }
+
+        .glow-box-primary {
+            box-shadow: 0 0 20px rgba(57,255,20,0.4);
+        }
+        
+        .glow-box-secondary {
+            box-shadow: 0 0 20px rgba(0,241,253,0.3);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col font-body-base antialiased">
+<div class="scanlines"></div>
+<!-- Top Nav Placeholder (Nav suppressed on end state, but keeping structural header) -->
+<header class="fixed top-0 w-full z-50 bg-surface-panel/80 backdrop-blur-xl border-b border-outline-variant/30 h-20 flex items-center justify-between px-margin-mobile md:px-margin-desktop shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
+<div class="font-display-lg text-display-lg tracking-tighter text-primary-container drop-shadow-[0_0_10px_rgba(57,255,20,0.4)]">
+            DAEUN VITALITY
+        </div>
+<div class="flex items-center gap-gutter">
+<span class="material-symbols-outlined text-primary-container" data-icon="settings">settings</span>
+</div>
+</header>
+<main class="flex-grow flex flex-col items-center justify-center pt-32 pb-24 px-margin-mobile md:px-margin-desktop max-w-[1280px] mx-auto w-full relative z-10">
+<!-- Logo -->
+<div class="mb-12 relative w-32 h-32 flex items-center justify-center glow-box-primary rounded-full bg-surface-container-high/50 p-4 border border-outline-variant/50 backdrop-blur-md">
+<img alt="Daeun Vitality Logo" class="w-full h-full object-contain mix-blend-screen opacity-90 drop-shadow-[0_0_15px_rgba(57,255,20,0.8)]" src="https://lh3.googleusercontent.com/aida/AEtjO1UwXlSgzRZ2XlXASLDwtFxhzpysjHreZormhBEj6O8UueoBy8-ozg_03LvBI6pEfPs9p4u824lkITA5p0nbQurblXm5zmuDF9c1KBy1eETPM8ycdXJnAg8hGnufvU-0wjd5EdEHOmlAEGCVM7ATSJIEPszHTAh5qStEn5dqxhjkaNRAMg1fIECB362BNSfNWA2Uo9D_s5NfycAGlzhPO03yZbi-gZocOkCCEOFYFCvMNgiR4vz-G58Yv5M"/>
+</div>
+<!-- Main Content Header -->
+<div class="text-center mb-16 space-y-4">
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary-container glow-text-primary uppercase tracking-wider">
+                OPTIMIZATION COMPLETE
+            </h1>
+<p class="font-body-base text-body-base text-on-surface-variant max-w-2xl mx-auto opacity-80 uppercase tracking-widest text-sm md:text-base">
+                Your metabolic protocol has been synchronized. Stay vitalized.<br/>
+<span class="font-label-micro text-label-micro text-outline mt-2 block">당신의 대사 프로토콜이 동기화되었습니다. 활력을 유지하세요.</span>
+</p>
+</div>
+<!-- Vitality Data Card -->
+<div class="w-full max-w-3xl bg-surface-container-high/80 backdrop-blur-xl border border-outline-variant/50 bevel-clip p-1 relative mb-16 glow-box-primary group transition-all duration-500 hover:border-primary/50">
+<!-- Decorative Tag -->
+<div class="absolute -top-3 right-4 bg-surface-container-lowest px-3 py-1 font-label-micro text-label-micro text-secondary-container border border-outline-variant/50 z-20 shadow-lg">
+                SESSION_DATA // MOD-89X
+            </div>
+<div class="bg-surface-container-lowest h-full w-full p-8 flex flex-col gap-8">
+<div class="flex items-center justify-between border-b-2 border-outline-variant/30 pb-4">
+<span class="font-label-caps text-label-caps text-on-surface-variant">SESSION VITALITY</span>
+<span class="material-symbols-outlined text-primary-container animate-pulse" data-icon="bolt">bolt</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Data Point 1 -->
+<div class="flex flex-col gap-2 p-4 border border-outline-variant/30 bg-surface-bg/50 relative overflow-hidden group-hover:border-primary-container/30 transition-colors">
+<div class="absolute inset-0 bg-gradient-to-b from-primary-container/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<span class="font-label-micro text-label-micro text-outline">METABOLIC RATE</span>
+<div class="flex items-baseline gap-2">
+<span class="font-data-numeric text-display-lg text-secondary-container glow-box-secondary drop-shadow-md">98.4</span>
+<span class="font-label-micro text-label-micro text-secondary-container/70">%</span>
+</div>
+</div>
+<!-- Data Point 2 -->
+<div class="flex flex-col gap-2 p-4 border border-outline-variant/30 bg-surface-bg/50 relative overflow-hidden group-hover:border-primary-container/30 transition-colors">
+<div class="absolute inset-0 bg-gradient-to-b from-primary-container/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<span class="font-label-micro text-label-micro text-outline">NEURAL SYNC</span>
+<div class="flex items-baseline gap-2">
+<span class="font-data-numeric text-display-lg text-secondary-container glow-box-secondary drop-shadow-md">102</span>
+<span class="font-label-micro text-label-micro text-secondary-container/70">Hz</span>
+</div>
+</div>
+<!-- Data Point 3 -->
+<div class="flex flex-col gap-2 p-4 border border-outline-variant/30 bg-surface-bg/50 relative overflow-hidden group-hover:border-primary-container/30 transition-colors">
+<div class="absolute inset-0 bg-gradient-to-b from-primary-container/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<span class="font-label-micro text-label-micro text-outline">ENERGY YIELD</span>
+<div class="flex items-baseline gap-2">
+<span class="font-data-numeric text-display-lg text-primary-container glow-box-primary drop-shadow-md">4.2</span>
+<span class="font-label-micro text-label-micro text-primary-container/70">kW</span>
+</div>
+</div>
+</div>
+<!-- Progress Bar -->
+<div class="flex flex-col gap-2 mt-4">
+<div class="flex justify-between font-label-micro text-label-micro text-outline">
+<span>SYSTEM EFFICIENCY</span>
+<span class="text-primary-container">OPTIMAL</span>
+</div>
+<div class="h-2 w-full bg-surface-container-lowest border border-outline-variant/50 relative overflow-hidden">
+<div class="absolute top-0 left-0 h-full w-[94%] bg-primary-container shadow-[0_0_10px_rgba(57,255,20,0.8)]"></div>
+<!-- Grid overlay on progress bar -->
+<div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNCIgaGVpZ2h0PSI0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSI0IiBoZWlnaHQ9IjQiIGZpbGw9Im5vbmUiLz48cGF0aCBkPSJNMCA0VDBINCIgc3Ryb2tlPSJyZ2JhKDAsIDAsIDAsIDAuMikiIHN0cm9rZS13aWR0aD0iMSIvPjwvc3ZnPg==')] opacity-50"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Area -->
+<div class="flex flex-col items-center gap-8 w-full max-w-md">
+<!-- Primary Action -->
+<button class="w-full bg-primary-container text-on-primary-container font-label-caps text-label-caps py-6 px-8 bevel-clip hover:glow-primary-strong transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] hover:bg-primary flex items-center justify-center gap-3">
+<span class="material-symbols-outlined text-[20px]" data-icon="power_settings_new">power_settings_new</span>
+                RESTART ENGINE <span class="opacity-50 text-[10px] ml-2 font-normal block">(엔진 재가동)</span>
+</button>
+<!-- Secondary Actions Grid -->
+<div class="grid grid-cols-2 gap-4 w-full">
+<button class="flex flex-col items-center justify-center gap-2 p-4 border border-secondary-container/50 bg-surface-container-high/30 bevel-clip text-secondary-container hover:bg-secondary-container/10 hover:glow-secondary transition-all group">
+<span class="material-symbols-outlined group-hover:-translate-y-1 transition-transform" data-icon="download">download</span>
+<span class="font-label-micro text-label-micro text-center">DOWNLOAD REPORT<br/><span class="opacity-50 mt-1 block">리포트 다운로드</span></span>
+</button>
+<button class="flex flex-col items-center justify-center gap-2 p-4 border border-secondary-container/50 bg-surface-container-high/30 bevel-clip text-secondary-container hover:bg-secondary-container/10 hover:glow-secondary transition-all group">
+<span class="material-symbols-outlined group-hover:-translate-y-1 transition-transform" data-icon="share">share</span>
+<span class="font-label-micro text-label-micro text-center">SHARE PROTOCOL<br/><span class="opacity-50 mt-1 block">프로토콜 공유</span></span>
+</button>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 bg-surface-bg border-t border-grid-line flex flex-col md:flex-row justify-between items-center px-margin-mobile md:px-margin-desktop max-w-[1280px] mx-auto z-20 relative">
+<div class="text-primary-container font-bold font-label-micro text-label-micro mb-4 md:mb-0">
+            © 2024 DAEUN VITALITY // NEURAL CORE v4.2
+        </div>
+<div class="flex gap-8">
+<a class="font-label-micro text-label-micro text-outline hover:text-on-surface hover:text-secondary-fixed transition-colors" href="#">PROTOCOL</a>
+<a class="font-label-micro text-label-micro text-outline hover:text-on-surface hover:text-secondary-fixed transition-colors" href="#">ENCRYPTION</a>
+<a class="font-label-micro text-label-micro text-outline hover:text-on-surface hover:text-secondary-fixed transition-colors" href="#">SUPPORT</a>
+</div>
+</footer>
+</body></html>

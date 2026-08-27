@@ -137,3 +137,43 @@
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(57, 57, 59, 0.6);
 }
+
+.scanlines {
+  background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.2));
+  background-size: 100% 4px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0.3;
+}
+
+.bevel-clip {
+  clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+}
+
+.glow-text-primary {
+  text-shadow: 0 0 15px rgba(57, 255, 20, 0.8);
+}
+
+.glow-text-secondary {
+  text-shadow: 0 0 15px rgba(0, 243, 255, 0.8);
+}
+
+.glow-box-primary {
+  box-shadow: 0 0 25px rgba(57, 255, 20, 0.35);
+}
+
+.glow-box-secondary {
+  box-shadow: 0 0 25px rgba(0, 243, 255, 0.3);
+}
+
+.cyber-grid-bg {
+  background-color: #0a0a0c;
+  background-image: linear-gradient(rgba(57, 255, 20, 0.04) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(57, 255, 20, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
