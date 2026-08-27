@@ -122,8 +122,47 @@ export function ProfilePanel({ onProfileChange }: Props) {
               </div>
             </div>
 
-            {/* Age */}
-            <div className="grid grid-cols-3 gap-2">
+            {/* Weight & Target Weight */}
+            <div className="grid grid-cols-2 gap-2">
+              <div>
+                <label className="mb-1 block text-xs font-semibold text-muted-foreground">현재 체중 (kg)</label>
+                <input
+                  type="number"
+                  min={30} max={200}
+                  value={profile.weight}
+                  onChange={(e) => {
+                    const w = Number(e.target.value)
+                    setProfile((p) => {
+                      const tw = p.targetWeight ?? w
+                      const goal = tw < w ? 'lose' : tw > w ? 'gain' : 'maintain'
+                      return { ...p, weight: w, goal }
+                    })
+                  }}
+                  className="w-full rounded-xl border border-border bg-background px-2.5 py-2 text-sm font-bold text-center outline-none focus-visible:border-primary"
+                />
+              </div>
+              <div>
+                <label className="mb-1 block text-xs font-semibold text-primary font-bold">목표 체중 (kg)</label>
+                <input
+                  type="number"
+                  min={30} max={200}
+                  placeholder="예: 45"
+                  value={profile.targetWeight ?? ''}
+                  onChange={(e) => {
+                    const val = e.target.value
+                    const tw = val !== '' ? Number(val) : undefined
+                    setProfile((p) => {
+                      const goal = tw !== undefined ? (tw < p.weight ? 'lose' : tw > p.weight ? 'gain' : 'maintain') : p.goal
+                      return { ...p, targetWeight: tw, goal }
+                    })
+                  }}
+                  className="w-full rounded-xl border border-primary/50 bg-primary/5 px-2.5 py-2 text-sm font-bold text-center text-primary outline-none focus-visible:border-primary"
+                />
+              </div>
+            </div>
+
+            {/* Age & Height */}
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="mb-1 block text-xs font-semibold text-muted-foreground">나이</label>
                 <input
@@ -131,16 +170,6 @@ export function ProfilePanel({ onProfileChange }: Props) {
                   min={10} max={100}
                   value={profile.age}
                   onChange={(e) => setProfile((p) => ({ ...p, age: Number(e.target.value) }))}
-                  className="w-full rounded-xl border border-border bg-background px-2.5 py-2 text-sm font-bold text-center outline-none focus-visible:border-primary"
-                />
-              </div>
-              <div>
-                <label className="mb-1 block text-xs font-semibold text-muted-foreground">체중 (kg)</label>
-                <input
-                  type="number"
-                  min={30} max={200}
-                  value={profile.weight}
-                  onChange={(e) => setProfile((p) => ({ ...p, weight: Number(e.target.value) }))}
                   className="w-full rounded-xl border border-border bg-background px-2.5 py-2 text-sm font-bold text-center outline-none focus-visible:border-primary"
                 />
               </div>

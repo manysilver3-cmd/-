@@ -255,6 +255,7 @@ export type UserProfile = {
   gender: 'male' | 'female'
   age: number
   weight: number // kg
+  targetWeight?: number // kg (목표 체중)
   height: number // cm
   activityLevel: 'sedentary' | 'light' | 'moderate' | 'active'
   goal: 'lose' | 'maintain' | 'gain'
@@ -574,6 +575,39 @@ export function calculateDailyTargetCalories(profile: UserProfile): {
     bmr: Math.round(baseBMR),
     tdee,
     targetCalories,
+  }
+}
+
+export type LongTermGoalResult = {
+  diffKg: number
+  totalKcal: number
+  type: 'lose' | 'gain' | 'maintain'
+  workoutHours: {
+    walk: number
+    run: number
+    stair: number
+  }
+}
+
+export function calculateLongTermGoal(profile: UserProfile): LongTermGoalResult | null {
+  if (!profile.targetWeight || profile.targetWeight === profile.weight) {
+    return null
+  }
+
+  const diffKg = Number((profile.targetWeight - profile.weight).toFixed(1))
+  const absDiff = Math.abs(diffKg)
+  const totalKcal = Math.round(absDiff * 7700)
+  const type = diffKg < 0 ? 'lose' : diffKg > 0 ? 'gain' : 'maintain'
+
+  return {
+    diffKg,
+    totalKcal,
+    type,
+    workoutHours: {
+      walk: Math.round((totalKcal / 240) * 10) / 10,
+      run: Math.round((totalKcal / 600) * 10) / 10,
+      stair: Math.round((totalKcal / 480) * 10) / 10,
+    },
   }
 }
 

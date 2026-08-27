@@ -1,9 +1,9 @@
 'use client'
 
-import { Activity, Bike, Bot, CheckCircle2, Dumbbell, Flame, Footprints, Info, PersonStanding, Sparkles, Timer, Utensils, Waves, Zap } from 'lucide-react'
+import { Activity, Bike, Bot, CheckCircle2, Dumbbell, Flame, Footprints, Info, PersonStanding, Sparkles, Target, Timer, Utensils, Waves, Zap } from 'lucide-react'
 import type { ExtendedCalcSuccess } from '@/lib/ai-calorie'
 import type { UserProfile } from '@/lib/calorie'
-import { calculateDailyTargetCalories } from '@/lib/calorie'
+import { calculateDailyTargetCalories, calculateLongTermGoal } from '@/lib/calorie'
 
 const WORKOUT_CONFIG: Record<string, { icon: typeof Footprints; color: string }> = {
   walk:  { icon: Footprints,     color: 'var(--leaf)' },
@@ -70,11 +70,53 @@ function SectionCard({
 export function ResultSection({ result, userProfile }: { result: ExtendedCalcSuccess; userProfile?: UserProfile | null }) {
   const { items, totalCalories, workouts, feedback, source } = result
   const dailyTarget = userProfile ? calculateDailyTargetCalories(userProfile) : null
+  const longTermGoal = userProfile ? calculateLongTermGoal(userProfile) : null
   const calorieGap = dailyTarget ? dailyTarget.targetCalories - totalCalories : null
   const progressPct = dailyTarget ? Math.min(100, Math.round((totalCalories / dailyTarget.targetCalories) * 100)) : null
 
   return (
     <div className="flex flex-col gap-4 duration-500 animate-in fade-in slide-in-from-bottom-3">
+      {/* Long-Term Target Weight Card (when targetWeight set) */}
+      {longTermGoal && (
+        <div className="overflow-hidden rounded-3xl border border-sky/40 bg-gradient-to-br from-sky/15 via-card to-card p-5 shadow-lg shadow-sky/5 sm:p-6">
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <div className="flex items-center gap-2.5">
+              <span className="flex size-9 items-center justify-center rounded-xl bg-sky/20 text-sky">
+                <Target className="size-5" />
+              </span>
+              <div>
+                <h3 className="text-base font-bold tracking-tight text-foreground">
+                  장기 목표 현황 ({userProfile?.weight}kg ➔ {userProfile?.targetWeight}kg)
+                </h3>
+                <p className="text-xs text-muted-foreground">
+                  목표 체중까지 총 <strong className="text-foreground">{Math.abs(longTermGoal.diffKg)}kg {longTermGoal.type === 'lose' ? '감량' : '증량'}</strong> 필요
+                </p>
+              </div>
+            </div>
+            <span className="rounded-full bg-sky/20 px-3 py-1 text-xs font-black text-sky">
+              {longTermGoal.type === 'lose' ? `-${formatNumber(longTermGoal.totalKcal)} kcal 소모` : `+${formatNumber(longTermGoal.totalKcal)} kcal 섭취`}
+            </span>
+          </div>
+
+          <div className="mt-4 grid grid-cols-1 gap-2.5 sm:grid-cols-3">
+            <div className="rounded-2xl border border-border/60 bg-card/60 p-3 text-center">
+              <p className="text-[11px] font-semibold text-muted-foreground">🚶 걷기로 달성 시</p>
+              <p className="text-lg font-black text-foreground">{longTermGoal.workoutHours.walk}시간</p>
+              <p className="text-[10px] text-muted-foreground">누적 운동 분량</p>
+            </div>
+            <div className="rounded-2xl border border-border/60 bg-card/60 p-3 text-center">
+              <p className="text-[11px] font-semibold text-muted-foreground">🏃 러닝으로 달성 시</p>
+              <p className="text-lg font-black text-flame">{longTermGoal.workoutHours.run}시간</p>
+              <p className="text-[10px] text-muted-foreground">고강도 유산소 기준</p>
+            </div>
+            <div className="rounded-2xl border border-border/60 bg-card/60 p-3 text-center">
+              <p className="text-[11px] font-semibold text-muted-foreground">🪜 계단오르기 달성 시</p>
+              <p className="text-lg font-black text-leaf">{longTermGoal.workoutHours.stair}시간</p>
+              <p className="text-[10px] text-muted-foreground">실내 운동 기준</p>
+            </div>
+          </div>
+        </div>
+      )}
       {/* AI Nutrition Coach Banner (when available) */}
       {feedback && (
         <div className="overflow-hidden rounded-3xl border border-primary/30 bg-gradient-to-br from-primary/10 via-card to-card p-5 shadow-lg shadow-primary/5 sm:p-6">
