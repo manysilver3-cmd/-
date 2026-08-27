@@ -1,18 +1,23 @@
 'use client'
 
-import { Activity, Bike, Bot, CheckCircle2, Dumbbell, Flame, Footprints, Info, PersonStanding, Sparkles, Target, Timer, Utensils, Waves, Zap } from 'lucide-react'
+import { Activity, Bike, Bot, CheckCircle2, Dumbbell, Flame, Footprints, HeartPulse, Info, Mountain, PersonStanding, Sparkles, Swords, Target, Timer, Trophy, Utensils, Waves, Zap } from 'lucide-react'
 import type { ExtendedCalcSuccess } from '@/lib/ai-calorie'
 import type { UserProfile } from '@/lib/calorie'
 import { calculateDailyTargetCalories, calculateLongTermGoal } from '@/lib/calorie'
 
 const WORKOUT_CONFIG: Record<string, { icon: typeof Footprints; color: string }> = {
-  walk:  { icon: Footprints,     color: '#39ff14' },
-  run:   { icon: Zap,            color: '#ff0055' },
-  bike:  { icon: Bike,           color: '#00f3ff' },
-  stair: { icon: Activity,       color: '#39ff14' },
-  rope:  { icon: PersonStanding, color: '#ff0055' },
-  swim:  { icon: Waves,          color: '#00f3ff' },
-  homet: { icon: Dumbbell,       color: '#39ff14' },
+  walk:      { icon: Footprints,     color: '#39ff14' },
+  run:       { icon: Zap,            color: '#ff0055' },
+  bike:      { icon: Bike,           color: '#00f3ff' },
+  stair:     { icon: Activity,       color: '#39ff14' },
+  rope:      { icon: PersonStanding, color: '#ff0055' },
+  swim:      { icon: Waves,          color: '#00f3ff' },
+  homet:     { icon: Dumbbell,       color: '#39ff14' },
+  hiking:    { icon: Mountain,       color: '#39ff14' },
+  badminton: { icon: Trophy,         color: '#00f3ff' },
+  tennis:    { icon: Target,         color: '#00f3ff' },
+  boxing:    { icon: Swords,         color: '#ff0055' },
+  pilates:   { icon: HeartPulse,     color: '#39ff14' },
 }
 
 function formatNumber(n: number) {
@@ -244,10 +249,10 @@ export function ResultSection({ result, userProfile }: { result: ExtendedCalcSuc
         </div>
       </SectionCard>
 
-      {/* Line 2 — Recommended Workouts (7 types) */}
-      <SectionCard icon={Zap} title="추천 운동 7종" lineBadge="2라인" accent="var(--leaf)">
-        <p className="mb-3 text-xs text-muted-foreground">
-          섭취한 <strong className="text-foreground">{formatNumber(totalCalories)} kcal</strong>를 소모할 수 있는 운동 7종입니다.
+      {/* Line 2 — Recommended Workouts (12 types) */}
+      <SectionCard icon={Zap} title="맞춤 추천 운동 12종" lineBadge="운동 가이드" accent="#39ff14">
+        <p className="mb-3 text-xs text-[#cac4cf]">
+          오늘 섭취한 총 <strong className="text-[#39ff14] font-bold">{formatNumber(totalCalories)} kcal</strong>를 효율적으로 소모할 수 있는 다채로운 맞춤 운동 12종 목록입니다.
         </p>
         <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-4">
           {workouts.map((w) => {
