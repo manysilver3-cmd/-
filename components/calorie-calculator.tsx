@@ -1,18 +1,19 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { AlertCircle, Clock, Flame, History, Loader2, RotateCcw, Sparkles, Trash2, X } from 'lucide-react'
+import { AlertCircle, Bot, Clock, Flame, History, Loader2, RotateCcw, Sparkles, Trash2, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { calculate, MAX_LENGTH, type CalcSuccess } from '@/lib/calorie'
+import { MAX_LENGTH } from '@/lib/calorie'
+import { calculateWithAI, type ExtendedCalcSuccess } from '@/lib/ai-calorie'
 import { clearHistory, getHistory, saveHistoryItem, type CalculationHistoryItem } from '@/lib/storage'
 import { ResultSection } from '@/components/result-section'
 
 const QUICK_EXAMPLES = [
   '햄버거 1개, 콜라 1캔, 감자튀김',
-  '삼겹살 1인분, 소주 1병, 공기밥 1개',
+  '삼겹살 2인분, 소주 1병, 볶음밥 반 공기',
   '치킨 3조각, 생맥주 500cc',
   '마라탕, 꿔바로우',
-  '샐러드 1개, 닭가슴살, 아메리카노',
+  '닭가슴살 샐러드 1개, 아아 1잔',
 ]
 
 export function CalorieCalculator() {
@@ -20,7 +21,7 @@ export function CalorieCalculator() {
   const [fieldError, setFieldError] = useState<string | null>(null)
   const [bannerError, setBannerError] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
-  const [result, setResult] = useState<CalcSuccess | null>(null)
+  const [result, setResult] = useState<ExtendedCalcSuccess | null>(null)
   const [history, setHistory] = useState<CalculationHistoryItem[]>([])
 
   useEffect(() => {
@@ -44,7 +45,7 @@ export function CalorieCalculator() {
     triggerCalculation(text)
   }
 
-  function triggerCalculation(targetText?: string) {
+  async function triggerCalculation(targetText?: string) {
     setBannerError(null)
     setFieldError(null)
 
@@ -55,8 +56,8 @@ export function CalorieCalculator() {
     }
 
     setLoading(true)
-    window.setTimeout(() => {
-      const res = calculate(textToCalc)
+    try {
+      const res = await calculateWithAI(textToCalc)
       if (res.ok) {
         setResult(res)
         const updated = saveHistoryItem(textToCalc, res.totalCalories, res.items.length)
@@ -68,8 +69,12 @@ export function CalorieCalculator() {
         setResult(null)
         setFieldError(res.message)
       }
+    } catch (err: any) {
+      setResult(null)
+      setBannerError('계산 처리 중 문제가 발생했습니다. 다시 시도해주세요.')
+    } finally {
       setLoading(false)
-    }, 500)
+    }
   }
 
   function runCalculation() {

@@ -70,9 +70,26 @@
 
 ---
 
+## 🏃 Sprint 5: Google Gemini AI 인공지능 식단 분석 & 맞춤 코칭
+- **기간**: Sprint 5
+- **목표**: Gemini AI 연동 기반 비정형 자연어 식단 정밀 분석 및 영양/운동 피드백 코칭 제공
+- **진행 상태**: 🟦 100% 검증 완료 (VERIFIED)
+
+### 태스크 목록
+| ID | 태스크 명 | 담당 / 영역 | 상태 | 완료 조건 (Acceptance Criteria) |
+| :--- | :--- | :--- | :---: | :--- |
+| **SP5-01** | Gemini API Route 구축 & 구조화 응답 | `app/api/ai-calculate/route.ts` | 🟦 검증완료 | Gemini 1.5 Flash 모델 연동 및 JSON Schema 응답 처리 |
+| **SP5-02** | 하이브리드 계산 엔진 및 Fallback | `lib/ai-calorie.ts` | 🟦 검증완료 | API 실패 또는 타임아웃 시 로컬 계산기로 100% 무중단 전환 |
+| **SP5-03** | AI 영양 코칭 & 탄단지 밸런스 UI | `components/result-section.tsx` | 🟦 검증완료 | AI 식단 총평, 탄/단/지 평가 칩 및 실천 팁 렌더링 |
+| **SP5-04** | 대화형 입력 지원 & 컴포넌트 연동 | `components/calorie-calculator.tsx` | 🟦 검증완료 | 비정형 자연어 문장 지원 및 AI 계산 비동기 로딩 연동 |
+| **SP5-05** | API 키 보안 관리 및 문서 갱신 | `.env`, `.gitignore`, PRD, Docs | 🟦 검증완료 | `.env` 보안 격리, `.env.example` 및 전체 기획/개발 문서 최신화 |
+
+---
+
 ## 📊 스프린트 달성도 현황
 - **Sprint 1**: 100% (6/6 검증완료 🟦)
 - **Sprint 2**: 100% (7/7 검증완료 🟦)
 - **Sprint 3**: 100% (4/4 검증완료 🟦)
 - **Sprint 4**: 100% (4/4 검증완료 🟦)
-- **전체 진척도**: **100% (21/21 검증완료 🟦)**
+- **Sprint 5**: 100% (5/5 검증완료 🟦)
+- **전체 진척도**: **100% (26/26 검증완료 🟦)**

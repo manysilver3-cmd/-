@@ -153,6 +153,24 @@ gantt
 
 ---
 
+### 🏃 Sprint 5: Google Gemini AI 인공지능 식단 분석 및 맞춤 코칭
+- **목표**: Gemini AI 연동을 통해 비정형 자연어 식단 정밀 분석 및 영양/운동 피드백 코칭 제공
+- **주요 작업**:
+  1. **AI Route Handler 구축 (`app/api/ai-calculate/route.ts`)**
+     - Gemini 1.5 Flash 모델 연동 및 JSON Schema Structured Output 강제
+     - 시스템 프롬프트(임상 영양사 및 운동생리학 전문가 페르소나) 정의
+  2. **하이브리드 파서 및 클라이언트 헬퍼 (`lib/ai-calorie.ts`)**
+     - AI API 호출 및 오류 시 로컬 계산기(`lib/calorie.ts`) 자동 Fallback
+  3. **AI 영양 코칭 카드 UI (`components/result-section.tsx`)**
+     - 탄/단/지 밸런스 평가 칩 및 실천 팁 2종 렌더링
+  4. **보안 및 환경 변수 관리**
+     - `.env` 및 `.env.example` 구성, `.gitignore` 시크릿 유출 방지
+- **완료 기준 (DoD)**:
+  - 자연어 대화형 식단 입력 시 AI 기반 정밀 칼로리 및 피드백 3초 이내 도출
+  - API 미설정/오류 시에도 로컬 연산으로 서비스 무중단 동작 보장
+
+---
+
 ## 5. 기술 스택 및 아키텍처 원칙
 
 - **Core**: Next.js 14+ (App Router), React 18, TypeScript

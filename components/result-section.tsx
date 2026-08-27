@@ -1,7 +1,7 @@
 'use client'
 
-import { Bike, Flame, Footprints, Info, Sparkles, Timer, Utensils, Zap } from 'lucide-react'
-import type { CalcSuccess } from '@/lib/calorie'
+import { Activity, Bike, Bot, CheckCircle2, Flame, Footprints, Info, Sparkles, Timer, Utensils, Zap } from 'lucide-react'
+import type { ExtendedCalcSuccess } from '@/lib/ai-calorie'
 
 const WORKOUT_CONFIG: Record<string, { icon: typeof Footprints; color: string; desc: string }> = {
   walk: { icon: Footprints, color: 'var(--leaf)', desc: '저강도 유산소' },
@@ -61,13 +61,72 @@ function SectionCard({
   )
 }
 
-export function ResultSection({ result }: { result: CalcSuccess }) {
-  const { items, totalCalories, workouts } = result
+export function ResultSection({ result }: { result: ExtendedCalcSuccess }) {
+  const { items, totalCalories, workouts, feedback, source } = result
 
   return (
     <div className="flex flex-col gap-4 duration-500 animate-in fade-in slide-in-from-bottom-3">
+      {/* AI Nutrition Coach Banner (when available) */}
+      {feedback && (
+        <div className="overflow-hidden rounded-3xl border border-primary/30 bg-gradient-to-br from-primary/10 via-card to-card p-5 shadow-lg shadow-primary/5 sm:p-6">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <span className="flex size-8 items-center justify-center rounded-xl bg-primary/20 text-primary">
+                <Bot className="size-4.5" aria-hidden="true" />
+              </span>
+              <h3 className="text-sm font-bold tracking-tight text-foreground sm:text-base">
+                Gemini AI 영양 코칭 리포트
+              </h3>
+            </div>
+            <span className="inline-flex items-center gap-1 rounded-full border border-primary/30 bg-primary/15 px-2.5 py-0.5 text-[11px] font-bold text-primary">
+              <Sparkles className="size-3" />
+              AI 분석 완료
+            </span>
+          </div>
+
+          <p className="mt-3 text-sm leading-relaxed text-foreground/90 font-medium">
+            {feedback.summary}
+          </p>
+
+          {/* Macro balance pills */}
+          {feedback.macroAnalysis && (
+            <div className="mt-3.5 flex flex-wrap gap-2">
+              <div className="flex items-center gap-1.5 rounded-xl border border-border/80 bg-background/80 px-3 py-1.5 text-xs">
+                <span className="font-semibold text-muted-foreground">탄수화물</span>
+                <span className="font-bold text-foreground">{feedback.macroAnalysis.carbsLevel}</span>
+              </div>
+              <div className="flex items-center gap-1.5 rounded-xl border border-border/80 bg-background/80 px-3 py-1.5 text-xs">
+                <span className="font-semibold text-muted-foreground">단백질</span>
+                <span className="font-bold text-foreground">{feedback.macroAnalysis.proteinLevel}</span>
+              </div>
+              <div className="flex items-center gap-1.5 rounded-xl border border-border/80 bg-background/80 px-3 py-1.5 text-xs">
+                <span className="font-semibold text-muted-foreground">지방</span>
+                <span className="font-bold text-foreground">{feedback.macroAnalysis.fatLevel}</span>
+              </div>
+            </div>
+          )}
+
+          {/* Health tips */}
+          {Array.isArray(feedback.tips) && feedback.tips.length > 0 && (
+            <div className="mt-3.5 space-y-1.5 border-t border-border/60 pt-3">
+              {feedback.tips.map((tip, idx) => (
+                <div key={idx} className="flex items-start gap-2 text-xs text-muted-foreground">
+                  <CheckCircle2 className="mt-0.5 size-3.5 shrink-0 text-primary" />
+                  <span>{tip}</span>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+
       {/* Line 1 — Calorie Information (Individual Items + Total Calories) */}
-      <SectionCard icon={Utensils} title="칼로리 정보" lineBadge="1라인" accent="var(--flame)">
+      <SectionCard
+        icon={Utensils}
+        title="칼로리 정보"
+        lineBadge={source === 'gemini' ? 'AI 정밀 분석' : '1라인'}
+        accent="var(--flame)"
+      >
         <div className="space-y-3">
           {/* Individual items */}
           <div className="flex flex-wrap gap-2">
